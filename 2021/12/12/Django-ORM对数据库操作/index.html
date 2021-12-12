@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="通过shell命令行来创建数据对象（ORM）1、启动命令行工具首先打开命令行工具在django项目的根目录下面，输入– python manage.py shell以进入命令行， 2、引入所需要操作的app的modelsfrom hello import models这里以hello app举例，先引入对应的models 3、通过代码来创建这里通过对hello app下的Account model">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="通过shell命令行来创建数据对象（ORM）1、启动命令行工具首先打开命令行工具在django项目的根目录下面，输入– python manage.py shell以进入命令行， 2、引入所需要操作的app的modelsfrom hello import models这里以hello app举例，先引入对应的models 3、通过代码来创建这里通过对hello app下的Account model">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303433502/7B804A41019CFEE9E5D03F857866F325">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303538288/FE5D692A2E31602231B04D92401DB571">
+<meta property="og:image" content="c:/Users/风轻云淡/AppData/Roaming/Typora/typora-user-images/image-20210529233434158.png">
+<meta property="og:image" content="c:/Users/风轻云淡/AppData/Roaming/Typora/typora-user-images/image-20210529234054488.png">
+<meta property="article:published_time" content="2021-12-12T09:18:41.247Z">
+<meta property="article:modified_time" content="2021-12-12T09:18:06.792Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303433502/7B804A41019CFEE9E5D03F857866F325">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Django-ORM对数据库操作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:18:41.247Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="通过shell命令行来创建数据对象（ORM）"><a href="#通过shell命令行来创建数据对象（ORM）" class="headerlink" title="通过shell命令行来创建数据对象（ORM）"></a>通过shell命令行来创建数据对象（ORM）</h2><h3 id="1、启动命令行工具"><a href="#1、启动命令行工具" class="headerlink" title="1、启动命令行工具"></a>1、启动命令行工具</h3><p>首先打开命令行工具在django项目的根目录下面，输入– <code>python manage.py shell</code>以进入命令行，</p>
+<h3 id="2、引入所需要操作的app的models"><a href="#2、引入所需要操作的app的models" class="headerlink" title="2、引入所需要操作的app的models"></a>2、引入所需要操作的app的models</h3><p><code>from hello import models</code>这里以hello app举例，先引入对应的models</p>
+<h3 id="3、通过代码来创建"><a href="#3、通过代码来创建" class="headerlink" title="3、通过代码来创建"></a>3、通过代码来创建</h3><p>这里通过对hello app下的Account model举例来说明创建过程</p>
+<h5 id="1-通过对象的静态函数直接创建"><a href="#1-通过对象的静态函数直接创建" class="headerlink" title="1.通过对象的静态函数直接创建"></a>1.通过对象的静态函数直接创建</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">models.Account.objects.create(</span><br><span class="line"></span><br><span class="line">	username= <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	password = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	email = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-先实例化对象，再用非静态对象函数来保存"><a href="#2-先实例化对象，再用非静态对象函数来保存" class="headerlink" title="2.先实例化对象，再用非静态对象函数来保存"></a>2.先实例化对象，再用非静态对象函数来保存</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">account = Account.models(</span><br><span class="line"></span><br><span class="line">	username = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	password = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	email = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">account.save()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、对外键的关联操作"><a href="#4、对外键的关联操作" class="headerlink" title="4、对外键的关联操作"></a>4、对外键的关联操作</h3><p>在django根据models创建的数据库表中，ForeignKey外键定义的字段名除非用户已经定义成id，否则存储时都会自动在结尾加上id,例如：在Article表中定义的<code>account = models.ForeignKey(&quot;Account&quot;, on_delete=models.CASCADE)</code> 在mysql数据库中会自动存储成account_id<img src="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303433502/7B804A41019CFEE9E5D03F857866F325" alt="图片说明">故在对 对象模型进行添加字段的时候，不要直接对字段名进行字符串的添加，要对字段名_id进行整数的添加，或者对字段名进行对象的赋值。下面举例</p>
+<p>假设现在我在代码中已经有一个名为acc的Account对象，并且有一个名为art的Article对象</p>
+<p>（没有定义外键字段account_id）</p>
+<h5 id="1-对外键的字段名进行对象赋值"><a href="#1-对外键的字段名进行对象赋值" class="headerlink" title="1.对外键的字段名进行对象赋值"></a>1.对外键的字段名进行对象赋值</h5><p><code>article.account = acc</code></p>
+<h5 id="2-对外键的字段名-id进行整数的赋值"><a href="#2-对外键的字段名-id进行整数的赋值" class="headerlink" title="2.对外键的字段名_id进行整数的赋值"></a>2.对外键的字段名_id进行整数的赋值</h5><p><code>article.account_id = acc.id</code></p>
+<h3 id="5、多对多ManyToManyField的操作"><a href="#5、多对多ManyToManyField的操作" class="headerlink" title="5、多对多ManyToManyField的操作"></a>5、多对多ManyToManyField的操作</h3><p>假如在对象创建时直接指定对象的多对多关联外键的话，系统会报错</p>
+<p>例如我们在shell命令行中输入以下的代码：</p>
+<p><code>art = models.Article(title=&#39;比特币的疯狂&#39;,content=&#39;数字加密货币的前景&#39;,publish_date=&#39;2021-05-28&#39;,tags=[2,3])</code></p>
+<p>系统会直接报错：</p>
+<p>注意必须先用代码–<code>art.save()</code>保存对象数据到数据库中，才能添加外键关联，因为在mysql数据库中存储的多对多关系是另外一个表来存储对应的关系，并又系统隐式的添加外键。所以如果在数据库中没有该条记录的话，不存在该条记录的主键，是无法添加其他的关联的。</p>
+<p>正确的做法是：</p>
+<h5 id="1-先创建对象"><a href="#1-先创建对象" class="headerlink" title="1.先创建对象"></a>1.先创建对象</h5><p><code>art = models.Article(title=&#39;比特币的疯狂&#39;,content=&#39;数字加密货币的前景&#39;,publish_date=&#39;2021-05-28&#39;)</code></p>
+<h5 id="2-对创建成功的对象进行添加外键关联-本表中tags"><a href="#2-对创建成功的对象进行添加外键关联-本表中tags" class="headerlink" title="2.对创建成功的对象进行添加外键关联(本表中tags)"></a>2.对创建成功的对象进行添加外键关联(本表中tags)</h5><p><code>art.tags.set([2,3])</code></p>
+<p>之后在数据库中自动生成的表hello_article_tags就可以看到我们指定的多对多关系了</p>
+<p><img src="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303538288/FE5D692A2E31602231B04D92401DB571" alt="img"></p>
+<p>注意<code>art.set([tag1.id,tag2.id,])</code>是赋值，如果需要在原有的基础上添加tags,需要用<code>art.add(tag.id)</code>函数。set函数的参数是id的列表，add函数的参数直接是id</p>
+<h2 id="通过shell命令行来查询数据"><a href="#通过shell命令行来查询数据" class="headerlink" title="通过shell命令行来查询数据"></a>通过shell命令行来查询数据</h2><p><code>from hello import models</code>依然是先引包</p>
+<h3 id="1、查询全部"><a href="#1、查询全部" class="headerlink" title="1、查询全部"></a>1、查询全部</h3><p><code>models.Account.objects.all()</code> ，会返回一个QuerySet对象的列表</p>
+<p>其中Account是具体的表名</p>
+<h3 id="2、特定条件查询"><a href="#2、特定条件查询" class="headerlink" title="2、特定条件查询"></a>2、特定条件查询</h3><p>通过models.Account.objects.filter()，来筛选条件进行判断，下面举几个常用的filter的过滤规则</p>
+<h5 id="判断等于"><a href="#判断等于" class="headerlink" title="判断等于"></a>判断等于</h5><p>直接按照通常的格式加参数即可</p>
+<h5 id="判断不等于"><a href="#判断不等于" class="headerlink" title="判断不等于"></a>判断不等于</h5><p>在django的filter函数中没有&gt;和&lt;的操作，如果判断整数的大于或者小于需要’字段名’+’__’+’gt’=’比较的值’的格式来判断,（大于是gt，大于等于是gte，小于是lt，小于等于是lte）</p>
+<p>例如：我们现在要判断筛选出id大于等于3的account账户信息</p>
+<p><code>models.Account.objects.filter(id_gte=1) </code></p>
+<h5 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h5><p>语法： <code>filter(字段名__contains=&#39;匹配规则&#39;)</code></p>
+<p>例如：<code>models.Account.objects.filter(username__contains=&#39;a&#39;)</code>  </p>
+<p>作用是在Account表中查询到username中包含小写字母a的记录。注意是django默认是大小写敏感的，而在mysql中大小写不敏感，所以搜索出结果和mysql中用like模糊匹配返回的结果可能有所不同</p>
+<p><code>models.Account.objects.filter(username__icontains=&#39;a&#39;)</code>  在双下划线之后输入icontains即为大小写不敏感的查询，和mysql中的like对应</p>
+<h5 id="stratswith"><a href="#stratswith" class="headerlink" title="stratswith"></a>stratswith</h5><p>startswith是匹配以指定的字符串开头的字段，例如：</p>
+<p><code>models.Account.objects.filter(username__startswith=&#39;wa&#39;)</code></p>
+<p>作用是查找到所有的username以wa开头的字段。注意也是默认大小写敏感的，如果是要大小写不敏感的匹配则指定<code>username__istartswith=&#39;wa&#39;</code></p>
+<p>对应mysql中：</p>
+<p><code>SELECT * FROM hello_account WHERE username like &quot;wa% &quot;</code></p>
+<h5 id="endswith"><a href="#endswith" class="headerlink" title="endswith"></a>endswith</h5><p>endswith与上面startswith作用正好相反，匹配到以指定字符串为结尾的字段。</p>
+<h5 id="IN–区间匹配"><a href="#IN–区间匹配" class="headerlink" title="IN–区间匹配"></a>IN–区间匹配</h5><p>区间匹配与mysql类似，代码如下：</p>
+<p><code>models.Account.objects.filter(id__in=[1,3,4])</code></p>
+<p>与mysql中如下语句作用相同</p>
+<p><code>SELECT * FROM hello_account where username like &#39;%wa%&#39;</code>    (hello_Account是在MySQL中自动创建的对应Account model的表名)</p>
+<h5 id="range区间匹配"><a href="#range区间匹配" class="headerlink" title="range区间匹配"></a>range区间匹配</h5><p>range区间匹配本质上使用的是sql中的BETWEEN语法，直接举例：<br><code>models.Account.objects.filter(id__range=[3,8])</code></p>
+<p>是匹配出id在3到8闭区间范围内的记录</p>
+<h3 id="3、匹配出特定的时间范围内的字段"><a href="#3、匹配出特定的时间范围内的字段" class="headerlink" title="3、匹配出特定的时间范围内的字段"></a>3、匹配出特定的时间范围内的字段</h3><p>首先要引入datetime包，定义一个开始时间（t1）和一个结束时间（t2）然后以 <code>字段名__range=[t1,t2]</code>的格式来查询，例如如下代码：</p>
+<p><code>mdoels.Account.objects.filter(register_date__range=[t1,t2])</code></p>
+<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20210529233434158.png" alt="image-20210529233434158"></p>
+<p>如上图所示，在执行查询之后系统会提示一个警告，提示收到了一个不带任何时区的时间（t1和t2），这是由于我们在settings设置了USE_TZ = True 使用时区。可以暂时忽略此警告</p>
+<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20210529234054488.png" alt="image-20210529234054488"></p>
+<h3 id="4、在筛选中利用正则表达式"><a href="#4、在筛选中利用正则表达式" class="headerlink" title="4、在筛选中利用正则表达式"></a>4、在筛选中利用正则表达式</h3><p>关键字为 <code>字段名__regex</code>,使用例如：</p>
+<p><code>models.Account.objects.filter(username__regex=r&#39;^(w|a)&#39;)</code></p>
+<p>注意在python程序中写正则表达式字符串时，前面一定要加r，来取消转义字符的作用。同样如果指定关键字<code>iregex</code>的话，会大小写模糊的匹配</p>
+<h3 id="5、通过get函数来精确查询"><a href="#5、通过get函数来精确查询" class="headerlink" title="5、通过get函数来精确查询"></a>5、通过get函数来精确查询</h3><p>上述的filter函数可以来匹配返回多条记录，当需要精确查找一条记录的时候可以使用get函数，语法和filter函数相同，需要注意的是get函数只能返回一条数据，当没有查询到符合条件的数据或者是匹配到多条数据的时候，都会报错，通常用作查找或检验是否存在唯一的符合参数指定条件的数据。另外get的查询速度比filter要快一些。</p>
+<h3 id="6、exclude函数"><a href="#6、exclude函数" class="headerlink" title="6、exclude函数"></a>6、exclude函数</h3><p>exclude函数和filter函数的逻辑正好相反，会排除符合条件的数据，把其他不符合条件的数据返回</p>
+<h1 id="数据库更新操作"><a href="#数据库更新操作" class="headerlink" title="数据库更新操作"></a>数据库更新操作</h1><h3 id="1、通过update函数更新"><a href="#1、通过update函数更新" class="headerlink" title="1、通过update函数更新"></a>1、通过update函数更新</h3><p>update函数可以搭配filter或者get函数一起使用，例如：</p>
+<p><code>models.Account.objects.filter(username=&#39;wang&#39;).update(password=&#39;123&#39;)</code></p>
+<h3 id="2、通过delete删除数据"><a href="#2、通过delete删除数据" class="headerlink" title="2、通过delete删除数据"></a>2、通过delete删除数据</h3><p>delete函数可以删除数据，语法和update函数相同</p>
+<h3 id="3、数据库查询中关联外键和多对多关系"><a href="#3、数据库查询中关联外键和多对多关系" class="headerlink" title="3、数据库查询中关联外键和多对多关系"></a>3、数据库查询中关联外键和多对多关系</h3><p>正向的外键查询可以直接用字段名来查询返回，例如：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" data-id="ckx31lh3x000058j7073tcytb" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

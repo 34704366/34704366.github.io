@@ -71,6 +71,229 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-python冒号的用法总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:26:07.847Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="python冒号的用法总结"><a href="#python冒号的用法总结" class="headerlink" title="python冒号的用法总结"></a>python冒号的用法总结</h1><p>​        python语言对数组的处理比较灵活，形式简单，可以用冒号来方便的代替各种复杂的操作。但是很多新手朋友对python操作列表及字符串等的冒号写法不太熟悉，在此整理一下发便以后查阅。只要理解了冒号的各种用法含义，读到相关的代码也会很快了解代码的意图。</p>
+<h6 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h6><p>​        首先介绍冒号具体用法，如果对基本用法已经熟悉，可以直接跳到3. 总结 部分。</p>
+<h3 id="1-单个冒号的情况"><a href="#1-单个冒号的情况" class="headerlink" title="1. 单个冒号的情况"></a>1. 单个冒号的情况</h3><h4 id="1-1-写完整的情况下"><a href="#1-1-写完整的情况下" class="headerlink" title="1.1 写完整的情况下"></a>1.1 写完整的情况下</h4><p>​        单个冒号的情况下，对数组的遍历操作是从前向后操作。如：<code>arr[a:b]</code> ，冒号前的a含义是从a开始遍历，冒号后的b含义是到b截止（不包括b）。</p>
+<p>例如如下情况：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">1</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：<code>[2, 3]</code></p>
+<h4 id="1-2-略写冒号前面的情况"><a href="#1-2-略写冒号前面的情况" class="headerlink" title="1.2 略写冒号前面的情况"></a>1.2 略写冒号前面的情况</h4><p>如果略写冒号前面的话，默认系统会指定为1</p>
+<p>例如以下情况：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line"><span class="built_in">print</span>(arr[:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：<code>[1, 2, 3]</code></p>
+<h4 id="1-3-略写冒号后面的情况"><a href="#1-3-略写冒号后面的情况" class="headerlink" title="1.3 略写冒号后面的情况"></a>1.3 略写冒号后面的情况</h4><p>如果略写冒号后面的话，默认系统会指定为操作对象的长度+1，也就是说会遍历到最后一个元素为止。</p>
+<p>例如以下情况：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">3</span>:])</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：<code>[4, 5, 6, 7]</code></p>
+<h4 id="1-4-冒号前后指定负数的情况"><a href="#1-4-冒号前后指定负数的情况" class="headerlink" title="1.4 冒号前后指定负数的情况"></a>1.4 冒号前后指定负数的情况</h4><p>​        冒号前后指定位置的变量或者常量还有更灵活的用法，例如可以指定为负数，例如 <code>arr[2:-2]</code> ，其中-2代表的含义是倒数第二个位置。本质上是用 <code>len(arr)+1-2</code> 计算得位置。</p>
+<h4 id="1-5-总结："><a href="#1-5-总结：" class="headerlink" title="1.5 总结："></a>1.5 总结：</h4><p>​        冒号前面后面随便都可以省略，只需要记住冒号前指定开始位置，冒号后指定结束位置+1（就类似于经常出现在python各种参数指定的“左闭右开”的原则）如果省略不指定冒号前面，就代表从0开始，如果省略不指定冒号后面，就代表到对象的最后一个元素。</p>
+<h3 id="2-两个冒号的情况"><a href="#2-两个冒号的情况" class="headerlink" title="2. 两个冒号的情况"></a>2. 两个冒号的情况</h3><h4 id="2-1-写完整的情况下"><a href="#2-1-写完整的情况下" class="headerlink" title="2.1 写完整的情况下"></a>2.1 写完整的情况下</h4><p>​        两个冒号的情况，第一个冒号前后变量或常量代表的含义不变，第二个冒号后面来指定每次迭代的步数。例如：<code>arr[1:-2:2]</code> 该情况代表从第二个元素位置开始遍历，每次步数为2，到倒数第二个位置为止。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">1</span>:-<span class="number">2</span>:<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为： <code>[2, 4]</code></p>
+<h4 id="2-2-省略第二个冒号后值的情况"><a href="#2-2-省略第二个冒号后值的情况" class="headerlink" title="2.2 省略第二个冒号后值的情况"></a>2.2 省略第二个冒号后值的情况</h4><p>​        和第一个冒号左右的值一样，第二个冒号右边的值也可以省略，省略的话即为迭代步数为1（这与不写第二个冒号的情况是一样的）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">1</span>:-<span class="number">2</span>:])</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为： <code>[2, 3, 4, 5]</code></p>
+<h4 id="2-3-第二个冒号后值为负数的情况"><a href="#2-3-第二个冒号后值为负数的情况" class="headerlink" title="2.3 第二个冒号后值为负数的情况"></a>2.3 第二个冒号后值为负数的情况</h4><p>如果步数指定为负数，则代表从后往前遍历。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line"><span class="built_in">print</span>(arr[-<span class="number">2</span>::-<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为： <code>[6, 5, 4, 3, 2, 1]</code></p>
+<h6 id="在该例中省略第一个冒号后边的值，此时结束位置并不是正序的数组最后一个元素，而是倒序的数组的最后一个元素，因为遍历的顺序已经被指定为倒序，如果不指定结束位置，那么默认为首个元素的位置（倒序的最后一个元素的位置）"><a href="#在该例中省略第一个冒号后边的值，此时结束位置并不是正序的数组最后一个元素，而是倒序的数组的最后一个元素，因为遍历的顺序已经被指定为倒序，如果不指定结束位置，那么默认为首个元素的位置（倒序的最后一个元素的位置）" class="headerlink" title="在该例中省略第一个冒号后边的值，此时结束位置并不是正序的数组最后一个元素，而是倒序的数组的最后一个元素，因为遍历的顺序已经被指定为倒序，如果不指定结束位置，那么默认为首个元素的位置（倒序的最后一个元素的位置）"></a>在该例中省略第一个冒号后边的值，此时结束位置并不是正序的数组最后一个元素，而是倒序的数组的最后一个元素，因为遍历的顺序已经被指定为倒序，如果不指定结束位置，那么默认为首个元素的位置（倒序的最后一个元素的位置）</h6><h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>​        python中用冒号来遍历列表或者字符串等结构时，总的用法是 <code>arr[开始位置:结束位置:迭代步数]</code> ，每个位置的值都可以省略，只需要记住：</p>
+<h6 id="1-省略开始位置值：则默认值是遍历顺序上的第一个位置。"><a href="#1-省略开始位置值：则默认值是遍历顺序上的第一个位置。" class="headerlink" title="1. 省略开始位置值：则默认值是遍历顺序上的第一个位置。"></a>1. 省略开始位置值：则默认值是遍历顺序上的第一个位置。</h6><h6 id="2-省略结束位置值：则默认值是遍历顺序上最后一个位置。"><a href="#2-省略结束位置值：则默认值是遍历顺序上最后一个位置。" class="headerlink" title="2. 省略结束位置值：则默认值是遍历顺序上最后一个位置。"></a>2. 省略结束位置值：则默认值是遍历顺序上最后一个位置。</h6><h6 id="3-省略迭代步数（通常是不写第二个冒号），默认值是1（顺序的步数为1的遍历）"><a href="#3-省略迭代步数（通常是不写第二个冒号），默认值是1（顺序的步数为1的遍历）" class="headerlink" title="3. 省略迭代步数（通常是不写第二个冒号），默认值是1（顺序的步数为1的遍历）"></a>3. 省略迭代步数（通常是不写第二个冒号），默认值是1（顺序的步数为1的遍历）</h6><p>​        需要注意第一个冒号不能省略，否则是按下标取值，最简单的写法是 <code>arr[:]</code> 代码含义是顺序的遍历arr列表。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" data-id="ckx31lh45000458j76ukwav61" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python装饰器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:26:00.237Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="python装饰器"><a href="#python装饰器" class="headerlink" title="python装饰器"></a>python装饰器</h2><p>涉及知识：函数闭包，函数做返回值，函数做参数</p>
+<h5 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h5><p>两段代码中a_new_decorator都是装饰器，第一段是实现原理，第二段是@符号简写方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_new_decorator</span>(<span class="params">a_func</span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapTheFunction</span>():</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;I am doing some boring work before executing a_func()&quot;</span>)</span><br><span class="line"> </span><br><span class="line">        a_func()</span><br><span class="line"> </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;I am doing some boring work after executing a_func()&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> wrapTheFunction</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_function_requiring_decoration</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am the function which needs some decoration to remove my foul smell&quot;</span>)</span><br><span class="line"> </span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"><span class="comment">#outputs: &quot;I am the function which needs some decoration to remove my foul smell&quot;</span></span><br><span class="line"> </span><br><span class="line">a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoration)</span><br><span class="line"><span class="comment">#now a_function_requiring_decoration is wrapped by wrapTheFunction()</span></span><br><span class="line"> </span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"><span class="comment">#outputs:I am doing some boring work before executing a_func()</span></span><br><span class="line"><span class="comment">#        I am the function which needs some decoration to remove my foul smell</span></span><br><span class="line"><span class="comment">#        I am doing some boring work after executing a_func()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用@符号简写：</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@a_new_decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_function_requiring_decoration</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Hey you! Decorate me!&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am the function which needs some decoration to &quot;</span></span><br><span class="line">          <span class="string">&quot;remove my foul smell&quot;</span>)</span><br><span class="line"> </span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"><span class="comment">#outputs: I am doing some boring work before executing a_func()</span></span><br><span class="line"><span class="comment">#         I am the function which needs some decoration to remove my foul smell</span></span><br><span class="line"><span class="comment">#         I am doing some boring work after executing a_func()</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#the @a_new_decorator is just a short way of saying:</span></span><br><span class="line">a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoration)</span><br></pre></td></tr></table></figure>
+
+<p>本质上就是一个函数如果加装饰器，就把函数本身作为参数传给装饰器函数使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/" data-id="ckx31lh47000558j73j976ss5" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Django迁移数据库表示报错AttributeError ：" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:19:58.984Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Django迁移数据库表示报错AttributeError: ‘str’ object has no attribute ‘decode’的解决方案：</p>
+<p>在D:\anoconda\Lib\site-packages\django\db\backends\mysql的opreations.py文件中，将如下图中的代码中query的解码decode前加上encode(‘utf-8’)即可</p>
+<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20211212171941304.png" alt="image-20211212171941304"></p>
+<p>具体原因是由于python3.5和python2.7在套接字返回值解码上的差异</p>
+<p>python在bytes和str两种类型转换，所需要的函数依次是encode(),将str编码成bytes，以及decode()，将bytes解码成str</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" data-id="ckx31lh42000158j7haumg9ru" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Django-ORM对数据库操作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:18:41.247Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="通过shell命令行来创建数据对象（ORM）"><a href="#通过shell命令行来创建数据对象（ORM）" class="headerlink" title="通过shell命令行来创建数据对象（ORM）"></a>通过shell命令行来创建数据对象（ORM）</h2><h3 id="1、启动命令行工具"><a href="#1、启动命令行工具" class="headerlink" title="1、启动命令行工具"></a>1、启动命令行工具</h3><p>首先打开命令行工具在django项目的根目录下面，输入– <code>python manage.py shell</code>以进入命令行，</p>
+<h3 id="2、引入所需要操作的app的models"><a href="#2、引入所需要操作的app的models" class="headerlink" title="2、引入所需要操作的app的models"></a>2、引入所需要操作的app的models</h3><p><code>from hello import models</code>这里以hello app举例，先引入对应的models</p>
+<h3 id="3、通过代码来创建"><a href="#3、通过代码来创建" class="headerlink" title="3、通过代码来创建"></a>3、通过代码来创建</h3><p>这里通过对hello app下的Account model举例来说明创建过程</p>
+<h5 id="1-通过对象的静态函数直接创建"><a href="#1-通过对象的静态函数直接创建" class="headerlink" title="1.通过对象的静态函数直接创建"></a>1.通过对象的静态函数直接创建</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">models.Account.objects.create(</span><br><span class="line"></span><br><span class="line">	username= <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	password = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	email = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-先实例化对象，再用非静态对象函数来保存"><a href="#2-先实例化对象，再用非静态对象函数来保存" class="headerlink" title="2.先实例化对象，再用非静态对象函数来保存"></a>2.先实例化对象，再用非静态对象函数来保存</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">account = Account.models(</span><br><span class="line"></span><br><span class="line">	username = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	password = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	email = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">account.save()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、对外键的关联操作"><a href="#4、对外键的关联操作" class="headerlink" title="4、对外键的关联操作"></a>4、对外键的关联操作</h3><p>在django根据models创建的数据库表中，ForeignKey外键定义的字段名除非用户已经定义成id，否则存储时都会自动在结尾加上id,例如：在Article表中定义的<code>account = models.ForeignKey(&quot;Account&quot;, on_delete=models.CASCADE)</code> 在mysql数据库中会自动存储成account_id<img src="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303433502/7B804A41019CFEE9E5D03F857866F325" alt="图片说明">故在对 对象模型进行添加字段的时候，不要直接对字段名进行字符串的添加，要对字段名_id进行整数的添加，或者对字段名进行对象的赋值。下面举例</p>
+<p>假设现在我在代码中已经有一个名为acc的Account对象，并且有一个名为art的Article对象</p>
+<p>（没有定义外键字段account_id）</p>
+<h5 id="1-对外键的字段名进行对象赋值"><a href="#1-对外键的字段名进行对象赋值" class="headerlink" title="1.对外键的字段名进行对象赋值"></a>1.对外键的字段名进行对象赋值</h5><p><code>article.account = acc</code></p>
+<h5 id="2-对外键的字段名-id进行整数的赋值"><a href="#2-对外键的字段名-id进行整数的赋值" class="headerlink" title="2.对外键的字段名_id进行整数的赋值"></a>2.对外键的字段名_id进行整数的赋值</h5><p><code>article.account_id = acc.id</code></p>
+<h3 id="5、多对多ManyToManyField的操作"><a href="#5、多对多ManyToManyField的操作" class="headerlink" title="5、多对多ManyToManyField的操作"></a>5、多对多ManyToManyField的操作</h3><p>假如在对象创建时直接指定对象的多对多关联外键的话，系统会报错</p>
+<p>例如我们在shell命令行中输入以下的代码：</p>
+<p><code>art = models.Article(title=&#39;比特币的疯狂&#39;,content=&#39;数字加密货币的前景&#39;,publish_date=&#39;2021-05-28&#39;,tags=[2,3])</code></p>
+<p>系统会直接报错：</p>
+<p>注意必须先用代码–<code>art.save()</code>保存对象数据到数据库中，才能添加外键关联，因为在mysql数据库中存储的多对多关系是另外一个表来存储对应的关系，并又系统隐式的添加外键。所以如果在数据库中没有该条记录的话，不存在该条记录的主键，是无法添加其他的关联的。</p>
+<p>正确的做法是：</p>
+<h5 id="1-先创建对象"><a href="#1-先创建对象" class="headerlink" title="1.先创建对象"></a>1.先创建对象</h5><p><code>art = models.Article(title=&#39;比特币的疯狂&#39;,content=&#39;数字加密货币的前景&#39;,publish_date=&#39;2021-05-28&#39;)</code></p>
+<h5 id="2-对创建成功的对象进行添加外键关联-本表中tags"><a href="#2-对创建成功的对象进行添加外键关联-本表中tags" class="headerlink" title="2.对创建成功的对象进行添加外键关联(本表中tags)"></a>2.对创建成功的对象进行添加外键关联(本表中tags)</h5><p><code>art.tags.set([2,3])</code></p>
+<p>之后在数据库中自动生成的表hello_article_tags就可以看到我们指定的多对多关系了</p>
+<p><img src="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303538288/FE5D692A2E31602231B04D92401DB571" alt="img"></p>
+<p>注意<code>art.set([tag1.id,tag2.id,])</code>是赋值，如果需要在原有的基础上添加tags,需要用<code>art.add(tag.id)</code>函数。set函数的参数是id的列表，add函数的参数直接是id</p>
+<h2 id="通过shell命令行来查询数据"><a href="#通过shell命令行来查询数据" class="headerlink" title="通过shell命令行来查询数据"></a>通过shell命令行来查询数据</h2><p><code>from hello import models</code>依然是先引包</p>
+<h3 id="1、查询全部"><a href="#1、查询全部" class="headerlink" title="1、查询全部"></a>1、查询全部</h3><p><code>models.Account.objects.all()</code> ，会返回一个QuerySet对象的列表</p>
+<p>其中Account是具体的表名</p>
+<h3 id="2、特定条件查询"><a href="#2、特定条件查询" class="headerlink" title="2、特定条件查询"></a>2、特定条件查询</h3><p>通过models.Account.objects.filter()，来筛选条件进行判断，下面举几个常用的filter的过滤规则</p>
+<h5 id="判断等于"><a href="#判断等于" class="headerlink" title="判断等于"></a>判断等于</h5><p>直接按照通常的格式加参数即可</p>
+<h5 id="判断不等于"><a href="#判断不等于" class="headerlink" title="判断不等于"></a>判断不等于</h5><p>在django的filter函数中没有&gt;和&lt;的操作，如果判断整数的大于或者小于需要’字段名’+’__’+’gt’=’比较的值’的格式来判断,（大于是gt，大于等于是gte，小于是lt，小于等于是lte）</p>
+<p>例如：我们现在要判断筛选出id大于等于3的account账户信息</p>
+<p><code>models.Account.objects.filter(id_gte=1) </code></p>
+<h5 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h5><p>语法： <code>filter(字段名__contains=&#39;匹配规则&#39;)</code></p>
+<p>例如：<code>models.Account.objects.filter(username__contains=&#39;a&#39;)</code>  </p>
+<p>作用是在Account表中查询到username中包含小写字母a的记录。注意是django默认是大小写敏感的，而在mysql中大小写不敏感，所以搜索出结果和mysql中用like模糊匹配返回的结果可能有所不同</p>
+<p><code>models.Account.objects.filter(username__icontains=&#39;a&#39;)</code>  在双下划线之后输入icontains即为大小写不敏感的查询，和mysql中的like对应</p>
+<h5 id="stratswith"><a href="#stratswith" class="headerlink" title="stratswith"></a>stratswith</h5><p>startswith是匹配以指定的字符串开头的字段，例如：</p>
+<p><code>models.Account.objects.filter(username__startswith=&#39;wa&#39;)</code></p>
+<p>作用是查找到所有的username以wa开头的字段。注意也是默认大小写敏感的，如果是要大小写不敏感的匹配则指定<code>username__istartswith=&#39;wa&#39;</code></p>
+<p>对应mysql中：</p>
+<p><code>SELECT * FROM hello_account WHERE username like &quot;wa% &quot;</code></p>
+<h5 id="endswith"><a href="#endswith" class="headerlink" title="endswith"></a>endswith</h5><p>endswith与上面startswith作用正好相反，匹配到以指定字符串为结尾的字段。</p>
+<h5 id="IN–区间匹配"><a href="#IN–区间匹配" class="headerlink" title="IN–区间匹配"></a>IN–区间匹配</h5><p>区间匹配与mysql类似，代码如下：</p>
+<p><code>models.Account.objects.filter(id__in=[1,3,4])</code></p>
+<p>与mysql中如下语句作用相同</p>
+<p><code>SELECT * FROM hello_account where username like &#39;%wa%&#39;</code>    (hello_Account是在MySQL中自动创建的对应Account model的表名)</p>
+<h5 id="range区间匹配"><a href="#range区间匹配" class="headerlink" title="range区间匹配"></a>range区间匹配</h5><p>range区间匹配本质上使用的是sql中的BETWEEN语法，直接举例：<br><code>models.Account.objects.filter(id__range=[3,8])</code></p>
+<p>是匹配出id在3到8闭区间范围内的记录</p>
+<h3 id="3、匹配出特定的时间范围内的字段"><a href="#3、匹配出特定的时间范围内的字段" class="headerlink" title="3、匹配出特定的时间范围内的字段"></a>3、匹配出特定的时间范围内的字段</h3><p>首先要引入datetime包，定义一个开始时间（t1）和一个结束时间（t2）然后以 <code>字段名__range=[t1,t2]</code>的格式来查询，例如如下代码：</p>
+<p><code>mdoels.Account.objects.filter(register_date__range=[t1,t2])</code></p>
+<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20210529233434158.png" alt="image-20210529233434158"></p>
+<p>如上图所示，在执行查询之后系统会提示一个警告，提示收到了一个不带任何时区的时间（t1和t2），这是由于我们在settings设置了USE_TZ = True 使用时区。可以暂时忽略此警告</p>
+<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20210529234054488.png" alt="image-20210529234054488"></p>
+<h3 id="4、在筛选中利用正则表达式"><a href="#4、在筛选中利用正则表达式" class="headerlink" title="4、在筛选中利用正则表达式"></a>4、在筛选中利用正则表达式</h3><p>关键字为 <code>字段名__regex</code>,使用例如：</p>
+<p><code>models.Account.objects.filter(username__regex=r&#39;^(w|a)&#39;)</code></p>
+<p>注意在python程序中写正则表达式字符串时，前面一定要加r，来取消转义字符的作用。同样如果指定关键字<code>iregex</code>的话，会大小写模糊的匹配</p>
+<h3 id="5、通过get函数来精确查询"><a href="#5、通过get函数来精确查询" class="headerlink" title="5、通过get函数来精确查询"></a>5、通过get函数来精确查询</h3><p>上述的filter函数可以来匹配返回多条记录，当需要精确查找一条记录的时候可以使用get函数，语法和filter函数相同，需要注意的是get函数只能返回一条数据，当没有查询到符合条件的数据或者是匹配到多条数据的时候，都会报错，通常用作查找或检验是否存在唯一的符合参数指定条件的数据。另外get的查询速度比filter要快一些。</p>
+<h3 id="6、exclude函数"><a href="#6、exclude函数" class="headerlink" title="6、exclude函数"></a>6、exclude函数</h3><p>exclude函数和filter函数的逻辑正好相反，会排除符合条件的数据，把其他不符合条件的数据返回</p>
+<h1 id="数据库更新操作"><a href="#数据库更新操作" class="headerlink" title="数据库更新操作"></a>数据库更新操作</h1><h3 id="1、通过update函数更新"><a href="#1、通过update函数更新" class="headerlink" title="1、通过update函数更新"></a>1、通过update函数更新</h3><p>update函数可以搭配filter或者get函数一起使用，例如：</p>
+<p><code>models.Account.objects.filter(username=&#39;wang&#39;).update(password=&#39;123&#39;)</code></p>
+<h3 id="2、通过delete删除数据"><a href="#2、通过delete删除数据" class="headerlink" title="2、通过delete删除数据"></a>2、通过delete删除数据</h3><p>delete函数可以删除数据，语法和update函数相同</p>
+<h3 id="3、数据库查询中关联外键和多对多关系"><a href="#3、数据库查询中关联外键和多对多关系" class="headerlink" title="3、数据库查询中关联外键和多对多关系"></a>3、数据库查询中关联外键和多对多关系</h3><p>正向的外键查询可以直接用字段名来查询返回，例如：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" data-id="ckx31lh3x000058j7073tcytb" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Restful微服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="article-date">
@@ -125,7 +348,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/" data-id="ckx315xqy0000nwj787y7e83r" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/" data-id="ckx31lh43000258j7391m40y0" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -176,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/hello-world/" data-id="ckx315xr90001nwj7f5dt41gn" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/hello-world/" data-id="ckx31lh44000358j74hjo8pxo" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -219,11 +442,23 @@
       <ul>
         
           <li>
-            <a href="/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/">(no title)</a>
+            <a href="/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2021/12/12/hello-world/">Hello World</a>
+            <a href="/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/">(no title)</a>
           </li>
         
       </ul>
