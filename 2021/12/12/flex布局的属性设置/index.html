@@ -6,19 +6,17 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Django迁移数据库表示报错AttributeError: ‘str’ object has no attribute ‘decode’的解决方案： 在D:\anoconda\Lib\site-packages\django\db\backends\mysql的opreations.py文件中，将如下图中的代码中query的解码decode前加上encode(‘utf-8’)即可  具体原因是由">
+  <meta name="description" content="flex-diretionflex-direiton是用来规定在flex布局中的主轴方向。如果不指定，则默认为row justify-contentjustify-content是用来规定在弹性布局中主轴方向上的排列 属性值：flex-start: 默认值，元素位于容器的开头 flex-end: 元素位于结尾。 center: 位于容器的中心 space-between: 元素位于各行之间留有空白">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/index.html">
+<meta property="og:url" content="http://example.com/2021/12/12/flex%E5%B8%83%E5%B1%80%E7%9A%84%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Django迁移数据库表示报错AttributeError: ‘str’ object has no attribute ‘decode’的解决方案： 在D:\anoconda\Lib\site-packages\django\db\backends\mysql的opreations.py文件中，将如下图中的代码中query的解码decode前加上encode(‘utf-8’)即可  具体原因是由">
+<meta property="og:description" content="flex-diretionflex-direiton是用来规定在flex布局中的主轴方向。如果不指定，则默认为row justify-contentjustify-content是用来规定在弹性布局中主轴方向上的排列 属性值：flex-start: 默认值，元素位于容器的开头 flex-end: 元素位于结尾。 center: 位于容器的中心 space-between: 元素位于各行之间留有空白">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:/Users/风轻云淡/AppData/Roaming/Typora/typora-user-images/image-20211212171941304.png">
-<meta property="article:published_time" content="2021-12-12T09:19:58.984Z">
-<meta property="article:modified_time" content="2021-12-12T09:19:51.156Z">
+<meta property="article:published_time" content="2021-12-12T09:30:11.888Z">
+<meta property="article:modified_time" content="2021-09-10T08:15:48.000Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:/Users/风轻云淡/AppData/Roaming/Typora/typora-user-images/image-20211212171941304.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -75,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-Django迁移数据库表示报错AttributeError ：" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-flex布局的属性设置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" class="article-date">
-  <time class="dt-published" datetime="2021-12-12T09:19:58.984Z" itemprop="datePublished">2021-12-12</time>
+    <a href="/2021/12/12/flex%E5%B8%83%E5%B1%80%E7%9A%84%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:30:11.888Z" itemprop="datePublished">2021-12-12</time>
 </a>
     
   </div>
@@ -87,16 +85,26 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Django迁移数据库表示报错AttributeError: ‘str’ object has no attribute ‘decode’的解决方案：</p>
-<p>在D:\anoconda\Lib\site-packages\django\db\backends\mysql的opreations.py文件中，将如下图中的代码中query的解码decode前加上encode(‘utf-8’)即可</p>
-<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20211212171941304.png" alt="image-20211212171941304"></p>
-<p>具体原因是由于python3.5和python2.7在套接字返回值解码上的差异</p>
-<p>python在bytes和str两种类型转换，所需要的函数依次是encode(),将str编码成bytes，以及decode()，将bytes解码成str</p>
+        <h4 id="flex-diretion"><a href="#flex-diretion" class="headerlink" title="flex-diretion"></a>flex-diretion</h4><p>flex-direiton是用来规定在flex布局中的主轴方向。如果不指定，则默认为row</p>
+<h4 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h4><p>justify-content是用来规定在弹性布局中主轴方向上的排列</p>
+<h6 id="属性值："><a href="#属性值：" class="headerlink" title="属性值："></a>属性值：</h6><p>flex-start: 默认值，元素位于容器的开头</p>
+<p>flex-end: 元素位于结尾。</p>
+<p>center: 位于容器的中心</p>
+<p>space-between: 元素位于各行之间留有空白的容器内</p>
+<p>space-around: 元素均匀的根据大小将左右都留白，分布在主轴上。</p>
+<h4 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h4><p>align-items是用来设置弹性布局中侧轴方向上的排列</p>
+<h6 id="属性值：-1"><a href="#属性值：-1" class="headerlink" title="属性值："></a>属性值：</h6><p>center: 元素位于侧轴的中心</p>
+<p>stretch: 默认值，元素将被拉伸以适应容器</p>
+<p>flex-start, flex-end, center与上面同理</p>
+<h6 id="同时两个轴上都支持inherit"><a href="#同时两个轴上都支持inherit" class="headerlink" title="同时两个轴上都支持inherit"></a>同时两个轴上都支持inherit</h6><h4 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h4><p>flex-wrap是用来设置是否支持换行</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">      <span class="attribute">display</span>:flex;</span><br><span class="line">      <span class="attribute">flex-wrap</span>: <span class="built_in">nowrap</span>(默认) |wrap|wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>nowrap:默认值，表示不换行，如果单行内容过多，项目宽度可能会被压缩<br>wrap:当容器单行容不下所有项目时允许换行排列<br>wrap-reverse: :当容器单行容不下所有项目时允许换行排列，换行方向为wrap的反方向    </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" data-id="ckx31srn20001boj75igt9dy2" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/flex%E5%B8%83%E5%B1%80%E7%9A%84%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/" data-id="ckx31srn50005boj7goqs65ip" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -106,7 +114,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/12/12/call,apply,bind%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -116,7 +124,7 @@
     </a>
   
   
-    <a href="/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title"></div>
     </a>

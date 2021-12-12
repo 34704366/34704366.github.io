@@ -6,19 +6,17 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Django迁移数据库表示报错AttributeError: ‘str’ object has no attribute ‘decode’的解决方案： 在D:\anoconda\Lib\site-packages\django\db\backends\mysql的opreations.py文件中，将如下图中的代码中query的解码decode前加上encode(‘utf-8’)即可  具体原因是由">
+  <meta name="description" content="一、变量1.字符串非普通变量2.普通变量的引用是复制，对象变量的引用是指针。定义普通变量的时候，引用值是复制该变量的值。 而如果定义一个对象，对他的引用是指针。（对对象的物理存储就是指针指向对象实际的存储空间。）同时也就是如果想在js中实现指针功能，需要定义对象变量。 3.查看变量类型typeof,instanceof 123console.log(person instanceof Object">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/index.html">
+<meta property="og:url" content="http://example.com/2021/12/12/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Django迁移数据库表示报错AttributeError: ‘str’ object has no attribute ‘decode’的解决方案： 在D:\anoconda\Lib\site-packages\django\db\backends\mysql的opreations.py文件中，将如下图中的代码中query的解码decode前加上encode(‘utf-8’)即可  具体原因是由">
+<meta property="og:description" content="一、变量1.字符串非普通变量2.普通变量的引用是复制，对象变量的引用是指针。定义普通变量的时候，引用值是复制该变量的值。 而如果定义一个对象，对他的引用是指针。（对对象的物理存储就是指针指向对象实际的存储空间。）同时也就是如果想在js中实现指针功能，需要定义对象变量。 3.查看变量类型typeof,instanceof 123console.log(person instanceof Object">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:/Users/风轻云淡/AppData/Roaming/Typora/typora-user-images/image-20211212171941304.png">
-<meta property="article:published_time" content="2021-12-12T09:19:58.984Z">
-<meta property="article:modified_time" content="2021-12-12T09:19:51.156Z">
+<meta property="article:published_time" content="2021-12-12T09:31:49.192Z">
+<meta property="article:modified_time" content="2021-08-19T14:04:14.000Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:/Users/风轻云淡/AppData/Roaming/Typora/typora-user-images/image-20211212171941304.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -75,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-Django迁移数据库表示报错AttributeError ：" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-JavaScript变量类型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" class="article-date">
-  <time class="dt-published" datetime="2021-12-12T09:19:58.984Z" itemprop="datePublished">2021-12-12</time>
+    <a href="/2021/12/12/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:31:49.192Z" itemprop="datePublished">2021-12-12</time>
 </a>
     
   </div>
@@ -87,16 +85,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Django迁移数据库表示报错AttributeError: ‘str’ object has no attribute ‘decode’的解决方案：</p>
-<p>在D:\anoconda\Lib\site-packages\django\db\backends\mysql的opreations.py文件中，将如下图中的代码中query的解码decode前加上encode(‘utf-8’)即可</p>
-<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20211212171941304.png" alt="image-20211212171941304"></p>
-<p>具体原因是由于python3.5和python2.7在套接字返回值解码上的差异</p>
-<p>python在bytes和str两种类型转换，所需要的函数依次是encode(),将str编码成bytes，以及decode()，将bytes解码成str</p>
+        <h3 id="一、变量"><a href="#一、变量" class="headerlink" title="一、变量"></a>一、变量</h3><h5 id="1-字符串非普通变量"><a href="#1-字符串非普通变量" class="headerlink" title="1.字符串非普通变量"></a>1.字符串非普通变量</h5><h5 id="2-普通变量的引用是复制，对象变量的引用是指针。"><a href="#2-普通变量的引用是复制，对象变量的引用是指针。" class="headerlink" title="2.普通变量的引用是复制，对象变量的引用是指针。"></a>2.普通变量的引用是复制，对象变量的引用是指针。</h5><p>定义普通变量的时候，引用值是复制该变量的值。</p>
+<p>而如果定义一个对象，对他的引用是指针。（对对象的物理存储就是指针指向对象实际的存储空间。）同时也就是如果想在js中实现指针功能，需要定义对象变量。</p>
+<h5 id="3-查看变量类型"><a href="#3-查看变量类型" class="headerlink" title="3.查看变量类型"></a>3.查看变量类型</h5><p>typeof,instanceof</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// 变量person 是Object 吗？</span></span><br><span class="line"><span class="built_in">console</span>.log(colors <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// 变量colors 是Array 吗？</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>); <span class="comment">// 变量pattern 是RegExp 吗？</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" data-id="ckx31srn20001boj75igt9dy2" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" data-id="ckx31srn30002boj76eqo4xjp" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -106,17 +104,8 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/12/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E6%90%BA%E5%B8%A6%E5%8F%82%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title"></div>
     </a>

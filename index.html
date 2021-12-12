@@ -71,6 +71,205 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript变量类型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:31:49.192Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="一、变量"><a href="#一、变量" class="headerlink" title="一、变量"></a>一、变量</h3><h5 id="1-字符串非普通变量"><a href="#1-字符串非普通变量" class="headerlink" title="1.字符串非普通变量"></a>1.字符串非普通变量</h5><h5 id="2-普通变量的引用是复制，对象变量的引用是指针。"><a href="#2-普通变量的引用是复制，对象变量的引用是指针。" class="headerlink" title="2.普通变量的引用是复制，对象变量的引用是指针。"></a>2.普通变量的引用是复制，对象变量的引用是指针。</h5><p>定义普通变量的时候，引用值是复制该变量的值。</p>
+<p>而如果定义一个对象，对他的引用是指针。（对对象的物理存储就是指针指向对象实际的存储空间。）同时也就是如果想在js中实现指针功能，需要定义对象变量。</p>
+<h5 id="3-查看变量类型"><a href="#3-查看变量类型" class="headerlink" title="3.查看变量类型"></a>3.查看变量类型</h5><p>typeof,instanceof</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// 变量person 是Object 吗？</span></span><br><span class="line"><span class="built_in">console</span>.log(colors <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// 变量colors 是Array 吗？</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>); <span class="comment">// 变量pattern 是RegExp 吗？</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" data-id="ckx31srn30002boj76eqo4xjp" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-微信小程序之页面跳转携带参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E6%90%BA%E5%B8%A6%E5%8F%82%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:30:59.304Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="子页面向父页面传回数据："><a href="#子页面向父页面传回数据：" class="headerlink" title="子页面向父页面传回数据："></a>子页面向父页面传回数据：</h3><h5 id="1-获取到数据："><a href="#1-获取到数据：" class="headerlink" title="1.获取到数据："></a>1.获取到数据：</h5><p>在跳转页面中指定：data-xx=”“，父页面以e接收参数，e.currentTarget.dataset.xx来接收数据</p>
+<h6 id="wxml中："><a href="#wxml中：" class="headerlink" title="wxml中："></a>wxml中：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span> <span class="attr">bindtap</span>=<span class="string">&quot;chooseTopic&quot;</span> <span class="attr">data-selectedTopic</span>=<span class="string">&quot;&#123;&#123;item&#125;&#125;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="js中："><a href="#js中：" class="headerlink" title="js中："></a>js中：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> topicInfo = e.currentTarget.dataset.selectedtopic</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-取得父页面："><a href="#2-取得父页面：" class="headerlink" title="2.取得父页面："></a>2.取得父页面：</h5><p>用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pages = getCurrentPages()</span><br></pre></td></tr></table></figure>
+
+<p>函数来获取到当前的所有页面，再取得上一级页面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> prePage = pages[pages.length - <span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-赋值"><a href="#3-赋值" class="headerlink" title="3.赋值"></a>3.赋值</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prePage.setData(&#123;</span><br><span class="line">	<span class="attr">topicText</span>: topicInfo.title</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="父页面向子页面传值："><a href="#父页面向子页面传值：" class="headerlink" title="父页面向子页面传值："></a>父页面向子页面传值：</h3><h6 id="父页面："><a href="#父页面：" class="headerlink" title="父页面："></a>父页面：</h6><p><code>pages/xxx/xxx?id=1</code>通过url的方式即可以传值</p>
+<h6 id="子页面："><a href="#子页面：" class="headerlink" title="子页面："></a>子页面：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">onload</span>(<span class="params">option</span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在onload方法中option参数里可以取得值</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E6%90%BA%E5%B8%A6%E5%8F%82%E6%95%B0/" data-id="ckx31srna000aboj7emeqaqqy" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-微信小程序之globalData" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BglobalData/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:30:33.210Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="globalData"><a href="#globalData" class="headerlink" title="globalData"></a>globalData</h3><p>微信小程序在JavaScript文件中声明的变量和函数只在该文件中有效；不同的文件中可以声明相同名字的变量和函数，不会互相影响。如果希望在各个页面之间共同使用某些信息，并且可以对共享数据进行修改设置，以便于其他页面根据数据变化进行对应的调整，可以使用全局js，app.js中的globalData来实现。</p>
+<h5 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"></span><br><span class="line">App(&#123;</span><br><span class="line"></span><br><span class="line">	<span class="attr">globalData</span>: &#123;</span><br><span class="line"></span><br><span class="line">		phone = <span class="string">&quot; &quot;</span>,</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="在app-js内修改，赋值："><a href="#在app-js内修改，赋值：" class="headerlink" title="在app.js内修改，赋值："></a>在app.js内修改，赋值：</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line">App(&#123;</span><br><span class="line">    <span class="attr">globalData</span>: &#123;</span><br><span class="line">        phone = <span class="string">&quot; &quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">onLaunch</span>: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">this</span>.globalData.phone = <span class="number">18712835199</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="在其他页面中使用："><a href="#在其他页面中使用：" class="headerlink" title="在其他页面中使用："></a>在其他页面中使用：</h5><h6 id="前提先引用app-js"><a href="#前提先引用app-js" class="headerlink" title="前提先引用app.js"></a>前提先引用app.js</h6><p><code>var app = getApp()</code></p>
+<p>之后对app.globalData.phone操作即可</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BglobalData/" data-id="ckx31srn70009boj7c3wv0fdy" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-call,apply,bind函数的区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/call,apply,bind%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:30:18.886Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="js中call（）、apply（）、bind（）函数的用法和区别"><a href="#js中call（）、apply（）、bind（）函数的用法和区别" class="headerlink" title="js中call（）、apply（）、bind（）函数的用法和区别"></a>js中call（）、apply（）、bind（）函数的用法和区别</h3><h6 id="这三个函数都是函数的成员函数。其目的都是用来改变函数中的this指向。"><a href="#这三个函数都是函数的成员函数。其目的都是用来改变函数中的this指向。" class="headerlink" title="这三个函数都是函数的成员函数。其目的都是用来改变函数中的this指向。"></a>这三个函数都是函数的成员函数。其目的都是用来改变函数中的this指向。</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;张三&#x27;</span>, age=<span class="number">19</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;旧的对象&#x27;</span></span><br><span class="line">	<span class="attr">objAge</span>: <span class="built_in">this</span>.age,</span><br><span class="line">    <span class="attr">myFun</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;年龄&#x27;</span> + <span class="built_in">this</span>.age + <span class="string">&#x27;来自&#x27;</span> + <span class="built_in">this</span>.come + <span class="string">&#x27;去往&#x27;</span> + <span class="built_in">this</span>.to);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> newObj = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;另外一个新的对象&#x27;</span></span><br><span class="line">    <span class="attr">age</span>: <span class="number">99999</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用过程如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj.myFun.call(db)；　　　　<span class="comment">// 另一个新的对象年龄 99999</span></span><br><span class="line">obj.myFun.apply(db);　　　 <span class="comment">// 另一个新的对象年龄 99999</span></span><br><span class="line">obj.myFun.bind(db)();　　　<span class="comment">// 另一个新的对象年龄 99999</span></span><br></pre></td></tr></table></figure>
+
+<p>对比有参数的情况下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">obj.myFun.call(db,<span class="string">&#x27;成都&#x27;</span>,<span class="string">&#x27;上海&#x27;</span>)；　　　　 <span class="comment">// 另一个新的对象年龄 99999  来自 成都去往上海</span></span><br><span class="line">obj.myFun.apply(db,[<span class="string">&#x27;成都&#x27;</span>,<span class="string">&#x27;上海&#x27;</span>]);      <span class="comment">// 另一个新的对象年龄 99999  来自 成都去往上海  </span></span><br><span class="line">obj.myFun.bind(db,<span class="string">&#x27;成都&#x27;</span>,<span class="string">&#x27;上海&#x27;</span>)();       <span class="comment">// 另一个新的对象年龄 99999  来自 成都去往上海</span></span><br><span class="line">obj.myFun.bind(db,[<span class="string">&#x27;成都&#x27;</span>,<span class="string">&#x27;上海&#x27;</span>])();　　 <span class="comment">// 另一个新的对象年龄 99999  来自 成都, 上海去往 undefined</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h4><p>call 、bind 、 apply 这三个函数的第一个参数都是 this 的指向对象，第二个参数差别就来了：</p>
+<p>call 的参数是直接放进去的，第二第三第 n 个参数全都用逗号分隔，直接放到后面 <code>obj.myFun.call(db,&#39;成都&#39;, ... ,&#39;string&#39; )</code></p>
+<p>apply 的所有参数都必须放在一个数组里面传进去 <code>obj.myFun.apply(db,[&#39;成都&#39;, ..., &#39;string&#39; ])</code>。</p>
+<p>bind 除了返回是函数以外，它 的参数和 call 一样。</p>
+<h6 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h6><p>三者的参数不限定是 string 类型，允许是各种类型，包括函数 、 object 等等</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/call,apply,bind%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckx31srn40004boj7855agm8b" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-flex布局的属性设置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/12/flex%E5%B8%83%E5%B1%80%E7%9A%84%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2021-12-12T09:30:11.888Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="flex-diretion"><a href="#flex-diretion" class="headerlink" title="flex-diretion"></a>flex-diretion</h4><p>flex-direiton是用来规定在flex布局中的主轴方向。如果不指定，则默认为row</p>
+<h4 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h4><p>justify-content是用来规定在弹性布局中主轴方向上的排列</p>
+<h6 id="属性值："><a href="#属性值：" class="headerlink" title="属性值："></a>属性值：</h6><p>flex-start: 默认值，元素位于容器的开头</p>
+<p>flex-end: 元素位于结尾。</p>
+<p>center: 位于容器的中心</p>
+<p>space-between: 元素位于各行之间留有空白的容器内</p>
+<p>space-around: 元素均匀的根据大小将左右都留白，分布在主轴上。</p>
+<h4 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h4><p>align-items是用来设置弹性布局中侧轴方向上的排列</p>
+<h6 id="属性值：-1"><a href="#属性值：-1" class="headerlink" title="属性值："></a>属性值：</h6><p>center: 元素位于侧轴的中心</p>
+<p>stretch: 默认值，元素将被拉伸以适应容器</p>
+<p>flex-start, flex-end, center与上面同理</p>
+<h6 id="同时两个轴上都支持inherit"><a href="#同时两个轴上都支持inherit" class="headerlink" title="同时两个轴上都支持inherit"></a>同时两个轴上都支持inherit</h6><h4 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h4><p>flex-wrap是用来设置是否支持换行</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">      <span class="attribute">display</span>:flex;</span><br><span class="line">      <span class="attribute">flex-wrap</span>: <span class="built_in">nowrap</span>(默认) |wrap|wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>nowrap:默认值，表示不换行，如果单行内容过多，项目宽度可能会被压缩<br>wrap:当容器单行容不下所有项目时允许换行排列<br>wrap-reverse: :当容器单行容不下所有项目时允许换行排列，换行方向为wrap的反方向    </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/flex%E5%B8%83%E5%B1%80%E7%9A%84%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/" data-id="ckx31srn50005boj7goqs65ip" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-python冒号的用法总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" class="article-date">
@@ -121,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" data-id="ckx31lh45000458j76ukwav61" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" data-id="ckx31srn60007boj76uqi42x3" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -156,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/" data-id="ckx31lh47000558j73j976ss5" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/" data-id="ckx31srn70008boj7gz0mcf0h" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -189,7 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" data-id="ckx31lh42000158j7haumg9ru" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" data-id="ckx31srn20001boj75igt9dy2" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -282,7 +481,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" data-id="ckx31lh3x000058j7073tcytb" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" data-id="ckx31srmx0000boj7fb0ueozn" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -348,58 +547,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/" data-id="ckx31lh43000258j7391m40y0" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/12/12/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-12-12T06:43:40.716Z" itemprop="datePublished">2021-12-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/12/hello-world/" data-id="ckx31lh44000358j74hjo8pxo" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/" data-id="ckx31srn40003boj7fukw1czt" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -412,6 +560,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -442,23 +595,23 @@
       <ul>
         
           <li>
-            <a href="/2021/12/12/python%E5%86%92%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/">(no title)</a>
+            <a href="/2021/12/12/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2021/12/12/python%E8%A3%85%E9%A5%B0%E5%99%A8/">(no title)</a>
+            <a href="/2021/12/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E6%90%BA%E5%B8%A6%E5%8F%82%E6%95%B0/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2021/12/12/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/">(no title)</a>
+            <a href="/2021/12/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BglobalData/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">(no title)</a>
+            <a href="/2021/12/12/call,apply,bind%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/">(no title)</a>
+            <a href="/2021/12/12/flex%E5%B8%83%E5%B1%80%E7%9A%84%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/">(no title)</a>
           </li>
         
       </ul>
