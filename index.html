@@ -158,6 +158,56 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-普通函数中和ES6箭头函数中this的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="普通函数中和ES6箭头函数中this的区别"><a href="#普通函数中和ES6箭头函数中this的区别" class="headerlink" title="普通函数中和ES6箭头函数中this的区别"></a><strong>普通函数中和ES6箭头函数中this的区别</strong></h1><h5 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h5><p>普通函数中this指函数执行过程中，自动生成的一个内部对象，是指当前的对象，只在当前函数内部使用。</p>
+<p>每次在执行一个函数的过程中，每一个函数都会生成一个相对应的this对象。这些this对象不同。</p>
+<h5 id="ES6箭头函数"><a href="#ES6箭头函数" class="headerlink" title="ES6箭头函数"></a>ES6箭头函数</h5><p>箭头函数的this是在定义函数时绑定的，不是在执行过程中绑定的。简单的说，函数在定义时，this就继承了定义函数的对象。箭头函数中定义的this，会自动继承全局this。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/17/%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E4%B8%AD%E5%92%8CES6%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%ADthis%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JavaScript变量类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -722,91 +772,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/12/12/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Restful微服务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一、介绍Restful、SOAP、RPC、SOA以及微服务"><a href="#一、介绍Restful、SOAP、RPC、SOA以及微服务" class="headerlink" title="一、介绍Restful、SOAP、RPC、SOA以及微服务"></a>一、介绍Restful、SOAP、RPC、SOA以及微服务</h1><h2 id="1-1、什么是Restful？"><a href="#1-1、什么是Restful？" class="headerlink" title="1.1、什么是Restful？"></a>1.1、什么是Restful？</h2><p>​    Restful是一种架构设计风格，提供了设计原则和约束条件，而不是架构，而满足这些约束条件和原则的应用程序或设计就是 Restful架构或服务。</p>
-<p>​    主要的设计原则：</p>
-<blockquote>
-<p>（1）、资源与URI<br>（2）、统一资源接口(HTTP方法如GET，PUT和POST)<br>（3）、资源的表述<br>（4）、资源的链接<br>（5）、状态的转移</p>
-</blockquote>
-<p>​    总之，RESTful的核心就是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作。</p>
-<h2 id="1-2、什么是SOAP？"><a href="#1-2、什么是SOAP？" class="headerlink" title="1.2、什么是SOAP？"></a>1.2、什么是SOAP？</h2><p>​    SOAP（简单对象访问协议）是一种数据交换协议规范，是一种轻量的、简单的、基于XML的协议的规范。SOAP协议和HTTP协议一样，都是底层的通信协议，只是请求包的格式不同而已，SOAP包是XML格式的。</p>
-<p>​    SOAP的消息是基于xml并封装成了符合http协议，因此，它符合任何路由器、 防火墙或代理服务器的要求。</p>
-<p>​    SOAP可以使用任何语言来完成，只要发送正确的soap请求即可，基于soap的服务可以在任何平台无需修改即可正常使用。</p>
-<h2 id="1-3、什么是RPC？"><a href="#1-3、什么是RPC？" class="headerlink" title="1.3、什么是RPC？"></a>1.3、什么是RPC？</h2><p>​    RPC就是从一台机器（客户端）上通过参数传递的方式调用另一台机器（服务器）上的一个函数或方法（可以统称为服务）并得到返回的结果。</p>
-<p>​    RPC 会隐藏底层的通讯细节（不需要直接处理Socket通讯或Http通讯）</p>
-<p>​    RPC 是一个请求响应模型。客户端发起请求，服务器返回响应（类似于Http的工作方式）</p>
-<p>​    RPC 在使用形式上像调用本地函数（或方法）一样去调用远程的函数（或方法）。</p>
-<p><strong>4种典型RPC远程调用框架：</strong></p>
-<blockquote>
-<p>（1）、<strong>RMI实现：</strong>利用java.rmi包实现，基于Java远程方法协议(Java Remote Method Protocol)和java的原生序列化。<br>（2）、<strong>Hessian：</strong>是一个轻量级的remoting onhttp工具，使用简单的方法提供了RMI的功能。 基于HTTP协议，采用二进制编解码。<br>（3）、<strong>thrift：</strong>是一种可伸缩的跨语言服务的软件框架。thrift允许你定义一个描述文件，描述数据类型和服务接口。依据该文件，编译器方便地生成RPC客户端和服务器通信代码。<br>（4）、<strong>dubbo：</strong>阿里的RPC框架。<br>（5）、<strong>SpringCloud：</strong>框架微服务全家桶。为开发人员提供了快速构建分布式系统的一些工具，包括配置管理、服务发现、断路器、路由、微代理、事件总线、全局锁、决策竞选、分布式会话等等。</p>
-</blockquote>
-<p>​    微服务在本质上，就是rpc。rpc有基于tcp的，http的，mq的等等。spring cloud是基于spring boot的，spring boot 实现的是http协议的rpc，算是rpc的一个子集。</p>
-<h1 id="1-4、什么是SOA？"><a href="#1-4、什么是SOA？" class="headerlink" title="1.4、什么是SOA？"></a>1.4、什么是SOA？</h1><p>​    SOA（Service-Oriented Architecture），中文全称：面向服务的架构。 </p>
-<p>​    通俗点来讲，SOA提倡将不同应用程序的业务功能封装成“服务”并宿主起来，通常以接口和契约的形式暴露并提供给外界应用访问（通过交换消息），达到不同系统可重用的目的。</p>
-<p>​    SOA是一个组件模型，它能将不同的服务通过定义良好的接口和契约联系起来。服务是SOA的基石。</p>
-<h1 id="二、微服务和SOA的区别"><a href="#二、微服务和SOA的区别" class="headerlink" title="二、微服务和SOA的区别"></a>二、微服务和SOA的区别</h1><p>​    微服务是SOA架构演进的结果。两者说到底都是对外提供接口的一种架构设计方式,随着互联网的发展，复杂的平台、业务的出现，导致SOA架构向更细粒度、更通过化程度发展，就成了所谓的微服务了。</p>
-<p>​    总之，微服务是SOA发展出来的产物，它是一种比较现代化的细粒度的SOA实现方式。</p>
-<p>​    SOA与微服务的区别在于如下几个方面：</p>
-<blockquote>
-<p>（1）、微服务相比于SOA更加精细，微服务更多的以独立的进程的方式存在，互相之间并无影响；<br>（2）、微服务提供的接口方式更加通用化，例如HTTP RESTful方式，各种终端都可以调用，无关语言、平台限制；<br>（3）、微服务更倾向于分布式去中心化的部署方式，在互联网业务场景下更适合。</p>
-</blockquote>
-<h1 id="三、为什么要使用微服务？"><a href="#三、为什么要使用微服务？" class="headerlink" title="三、为什么要使用微服务？"></a>三、为什么要使用微服务？</h1><p>​    技术为业务而生，架构也为业务而出现，当然SOA和微服务也是因为业务的发展而出现。出现SOA和微服务框架与业务的发展、平台的壮大密不可分，下面借用dubbo的网站架构发展图和说明：</p>
-<p><img src="https://img-blog.csdnimg.cn/20190419135024607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdWh1aXRlbmc=,size_16,color_FFFFFF,t_70" alt="img"></p>
-<p><strong>（1）、单一应用架构</strong></p>
-<p>​    当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。<br>​    此时，用于简化增删改查工作量的 数据访问框架(ORM) 是关键。</p>
-<p><strong>（2）、垂直应用架构</strong></p>
-<p>​    当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提升效率。<br>​    此时，用于加速前端页面开发的 Web框架(MVC) 是关键。</p>
-<p><strong>（3）、分布式服务架构</strong></p>
-<p>​    当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。<br>​    此时，用于提高业务复用及整合的 分布式服务框架(RPC) 是关键。</p>
-<p><strong>（4）、流动计算架构</strong></p>
-<p>​    当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。<br>​    此时，用于提高机器利用率的资源调度和治理中心(SOA) 是关键。</p>
-<p>​    平台随着业务的发展从 All in One 环境就可以满足业务需求（以Java来说，可能只是一两个war包就解决了），发展到需要拆分多个应用，并且采用MVC的方式分离前后端，加快开发效率；在发展到服务越来越多，不得不将一些核心或共用的服务拆分出来，其实发展到此阶段，如果服务拆分的足够精细，并且独立运行，我觉得就可以将之理解为一个微服务了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/12/Restful%E5%BE%AE%E6%9C%8D%E5%8A%A1/">展开全文 >></a>
         </p>
       
 
