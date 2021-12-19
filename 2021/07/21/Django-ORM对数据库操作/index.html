@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Django-ORM对数据库操作 | nccoder</title><meta name="keywords" content="博客, python, javaScript, linux, 微信小程序, 大前端"><meta name="author" content="王晨昊"><meta name="copyright" content="王晨昊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="通过shell命令行来创建数据对象（ORM）1、启动命令行工具首先打开命令行工具在django项目的根目录下面，输入– python manage.py shell以进入命令行， 2、引入所需要操作的app的modelsfrom hello import models这里以hello app举例，先引入对应的models 3、通过代码来创建这里通过对hello app下的Account model">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-ORM对数据库操作">
+<meta property="og:url" content="http://example.com/2021/07/21/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="nccoder">
+<meta property="og:description" content="通过shell命令行来创建数据对象（ORM）1、启动命令行工具首先打开命令行工具在django项目的根目录下面，输入– python manage.py shell以进入命令行， 2、引入所需要操作的app的modelsfrom hello import models这里以hello app举例，先引入对应的models 3、通过代码来创建这里通过对hello app下的Account model">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-07-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-19T08:26:41.196Z">
+<meta property="article:author" content="王晨昊">
+<meta property="article:tag" content="博客, python, javaScript, linux, 微信小程序, 大前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/07/21/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Django-ORM对数据库操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-19 16:26:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">nccoder</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Django-ORM对数据库操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-20T16:00:00.000Z" title="发表于 2021-07-21 00:00:00">2021-07-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-19T08:26:41.196Z" title="更新于 2021-12-19 16:26:41">2021-12-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Django-ORM对数据库操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="通过shell命令行来创建数据对象（ORM）"><a href="#通过shell命令行来创建数据对象（ORM）" class="headerlink" title="通过shell命令行来创建数据对象（ORM）"></a>通过shell命令行来创建数据对象（ORM）</h2><h3 id="1、启动命令行工具"><a href="#1、启动命令行工具" class="headerlink" title="1、启动命令行工具"></a>1、启动命令行工具</h3><p>首先打开命令行工具在django项目的根目录下面，输入– <code>python manage.py shell</code>以进入命令行，</p>
+<h3 id="2、引入所需要操作的app的models"><a href="#2、引入所需要操作的app的models" class="headerlink" title="2、引入所需要操作的app的models"></a>2、引入所需要操作的app的models</h3><p><code>from hello import models</code>这里以hello app举例，先引入对应的models</p>
+<h3 id="3、通过代码来创建"><a href="#3、通过代码来创建" class="headerlink" title="3、通过代码来创建"></a>3、通过代码来创建</h3><p>这里通过对hello app下的Account model举例来说明创建过程</p>
+<h5 id="1-通过对象的静态函数直接创建"><a href="#1-通过对象的静态函数直接创建" class="headerlink" title="1.通过对象的静态函数直接创建"></a>1.通过对象的静态函数直接创建</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">models.Account.objects.create(</span><br><span class="line"></span><br><span class="line">	username= <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	password = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	email = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-先实例化对象，再用非静态对象函数来保存"><a href="#2-先实例化对象，再用非静态对象函数来保存" class="headerlink" title="2.先实例化对象，再用非静态对象函数来保存"></a>2.先实例化对象，再用非静态对象函数来保存</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">account = Account.models(</span><br><span class="line"></span><br><span class="line">	username = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	password = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">	email = <span class="string">&#x27; &#x27;</span>,</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">account.save()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、对外键的关联操作"><a href="#4、对外键的关联操作" class="headerlink" title="4、对外键的关联操作"></a>4、对外键的关联操作</h3><p>在django根据models创建的数据库表中，ForeignKey外键定义的字段名除非用户已经定义成id，否则存储时都会自动在结尾加上id,例如：在Article表中定义的<code>account = models.ForeignKey(&quot;Account&quot;, on_delete=models.CASCADE)</code> 在mysql数据库中会自动存储成account_id<img src="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303433502/7B804A41019CFEE9E5D03F857866F325" alt="图片说明">故在对 对象模型进行添加字段的时候，不要直接对字段名进行字符串的添加，要对字段名_id进行整数的添加，或者对字段名进行对象的赋值。下面举例</p>
+<p>假设现在我在代码中已经有一个名为acc的Account对象，并且有一个名为art的Article对象</p>
+<p>（没有定义外键字段account_id）</p>
+<h5 id="1-对外键的字段名进行对象赋值"><a href="#1-对外键的字段名进行对象赋值" class="headerlink" title="1.对外键的字段名进行对象赋值"></a>1.对外键的字段名进行对象赋值</h5><p><code>article.account = acc</code></p>
+<h5 id="2-对外键的字段名-id进行整数的赋值"><a href="#2-对外键的字段名-id进行整数的赋值" class="headerlink" title="2.对外键的字段名_id进行整数的赋值"></a>2.对外键的字段名_id进行整数的赋值</h5><p><code>article.account_id = acc.id</code></p>
+<h3 id="5、多对多ManyToManyField的操作"><a href="#5、多对多ManyToManyField的操作" class="headerlink" title="5、多对多ManyToManyField的操作"></a>5、多对多ManyToManyField的操作</h3><p>假如在对象创建时直接指定对象的多对多关联外键的话，系统会报错</p>
+<p>例如我们在shell命令行中输入以下的代码：</p>
+<p><code>art = models.Article(title=&#39;比特币的疯狂&#39;,content=&#39;数字加密货币的前景&#39;,publish_date=&#39;2021-05-28&#39;,tags=[2,3])</code></p>
+<p>系统会直接报错：</p>
+<p>注意必须先用代码–<code>art.save()</code>保存对象数据到数据库中，才能添加外键关联，因为在mysql数据库中存储的多对多关系是另外一个表来存储对应的关系，并又系统隐式的添加外键。所以如果在数据库中没有该条记录的话，不存在该条记录的主键，是无法添加其他的关联的。</p>
+<p>正确的做法是：</p>
+<h5 id="1-先创建对象"><a href="#1-先创建对象" class="headerlink" title="1.先创建对象"></a>1.先创建对象</h5><p><code>art = models.Article(title=&#39;比特币的疯狂&#39;,content=&#39;数字加密货币的前景&#39;,publish_date=&#39;2021-05-28&#39;)</code></p>
+<h5 id="2-对创建成功的对象进行添加外键关联-本表中tags"><a href="#2-对创建成功的对象进行添加外键关联-本表中tags" class="headerlink" title="2.对创建成功的对象进行添加外键关联(本表中tags)"></a>2.对创建成功的对象进行添加外键关联(本表中tags)</h5><p><code>art.tags.set([2,3])</code></p>
+<p>之后在数据库中自动生成的表hello_article_tags就可以看到我们指定的多对多关系了</p>
+<p><img src="https://uploadfiles.nowcoder.com/images/20210529/277159616_1622303538288/FE5D692A2E31602231B04D92401DB571" alt="img"></p>
+<p>注意<code>art.set([tag1.id,tag2.id,])</code>是赋值，如果需要在原有的基础上添加tags,需要用<code>art.add(tag.id)</code>函数。set函数的参数是id的列表，add函数的参数直接是id</p>
+<h2 id="通过shell命令行来查询数据"><a href="#通过shell命令行来查询数据" class="headerlink" title="通过shell命令行来查询数据"></a>通过shell命令行来查询数据</h2><p><code>from hello import models</code>依然是先引包</p>
+<h3 id="1、查询全部"><a href="#1、查询全部" class="headerlink" title="1、查询全部"></a>1、查询全部</h3><p><code>models.Account.objects.all()</code> ，会返回一个QuerySet对象的列表</p>
+<p>其中Account是具体的表名</p>
+<h3 id="2、特定条件查询"><a href="#2、特定条件查询" class="headerlink" title="2、特定条件查询"></a>2、特定条件查询</h3><p>通过models.Account.objects.filter()，来筛选条件进行判断，下面举几个常用的filter的过滤规则</p>
+<h5 id="判断等于"><a href="#判断等于" class="headerlink" title="判断等于"></a>判断等于</h5><p>直接按照通常的格式加参数即可</p>
+<h5 id="判断不等于"><a href="#判断不等于" class="headerlink" title="判断不等于"></a>判断不等于</h5><p>在django的filter函数中没有&gt;和&lt;的操作，如果判断整数的大于或者小于需要’字段名’+’__’+’gt’=’比较的值’的格式来判断,（大于是gt，大于等于是gte，小于是lt，小于等于是lte）</p>
+<p>例如：我们现在要判断筛选出id大于等于3的account账户信息</p>
+<p><code>models.Account.objects.filter(id_gte=1) </code></p>
+<h5 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h5><p>语法： <code>filter(字段名__contains=&#39;匹配规则&#39;)</code></p>
+<p>例如：<code>models.Account.objects.filter(username__contains=&#39;a&#39;)</code>  </p>
+<p>作用是在Account表中查询到username中包含小写字母a的记录。注意是django默认是大小写敏感的，而在mysql中大小写不敏感，所以搜索出结果和mysql中用like模糊匹配返回的结果可能有所不同</p>
+<p><code>models.Account.objects.filter(username__icontains=&#39;a&#39;)</code>  在双下划线之后输入icontains即为大小写不敏感的查询，和mysql中的like对应</p>
+<h5 id="stratswith"><a href="#stratswith" class="headerlink" title="stratswith"></a>stratswith</h5><p>startswith是匹配以指定的字符串开头的字段，例如：</p>
+<p><code>models.Account.objects.filter(username__startswith=&#39;wa&#39;)</code></p>
+<p>作用是查找到所有的username以wa开头的字段。注意也是默认大小写敏感的，如果是要大小写不敏感的匹配则指定<code>username__istartswith=&#39;wa&#39;</code></p>
+<p>对应mysql中：</p>
+<p><code>SELECT * FROM hello_account WHERE username like &quot;wa% &quot;</code></p>
+<h5 id="endswith"><a href="#endswith" class="headerlink" title="endswith"></a>endswith</h5><p>endswith与上面startswith作用正好相反，匹配到以指定字符串为结尾的字段。</p>
+<h5 id="IN–区间匹配"><a href="#IN–区间匹配" class="headerlink" title="IN–区间匹配"></a>IN–区间匹配</h5><p>区间匹配与mysql类似，代码如下：</p>
+<p><code>models.Account.objects.filter(id__in=[1,3,4])</code></p>
+<p>与mysql中如下语句作用相同</p>
+<p><code>SELECT * FROM hello_account where username like &#39;%wa%&#39;</code>    (hello_Account是在MySQL中自动创建的对应Account model的表名)</p>
+<h5 id="range区间匹配"><a href="#range区间匹配" class="headerlink" title="range区间匹配"></a>range区间匹配</h5><p>range区间匹配本质上使用的是sql中的BETWEEN语法，直接举例：<br><code>models.Account.objects.filter(id__range=[3,8])</code></p>
+<p>是匹配出id在3到8闭区间范围内的记录</p>
+<h3 id="3、匹配出特定的时间范围内的字段"><a href="#3、匹配出特定的时间范围内的字段" class="headerlink" title="3、匹配出特定的时间范围内的字段"></a>3、匹配出特定的时间范围内的字段</h3><p>首先要引入datetime包，定义一个开始时间（t1）和一个结束时间（t2）然后以 <code>字段名__range=[t1,t2]</code>的格式来查询，例如如下代码：</p>
+<p><code>mdoels.Account.objects.filter(register_date__range=[t1,t2])</code></p>
+<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20210529233434158.png" alt="image-20210529233434158"></p>
+<p>如上图所示，在执行查询之后系统会提示一个警告，提示收到了一个不带任何时区的时间（t1和t2），这是由于我们在settings设置了USE_TZ = True 使用时区。可以暂时忽略此警告</p>
+<p><img src="C:\Users\风轻云淡\AppData\Roaming\Typora\typora-user-images\image-20210529234054488.png" alt="image-20210529234054488"></p>
+<h3 id="4、在筛选中利用正则表达式"><a href="#4、在筛选中利用正则表达式" class="headerlink" title="4、在筛选中利用正则表达式"></a>4、在筛选中利用正则表达式</h3><p>关键字为 <code>字段名__regex</code>,使用例如：</p>
+<p><code>models.Account.objects.filter(username__regex=r&#39;^(w|a)&#39;)</code></p>
+<p>注意在python程序中写正则表达式字符串时，前面一定要加r，来取消转义字符的作用。同样如果指定关键字<code>iregex</code>的话，会大小写模糊的匹配</p>
+<h3 id="5、通过get函数来精确查询"><a href="#5、通过get函数来精确查询" class="headerlink" title="5、通过get函数来精确查询"></a>5、通过get函数来精确查询</h3><p>上述的filter函数可以来匹配返回多条记录，当需要精确查找一条记录的时候可以使用get函数，语法和filter函数相同，需要注意的是get函数只能返回一条数据，当没有查询到符合条件的数据或者是匹配到多条数据的时候，都会报错，通常用作查找或检验是否存在唯一的符合参数指定条件的数据。另外get的查询速度比filter要快一些。</p>
+<h3 id="6、exclude函数"><a href="#6、exclude函数" class="headerlink" title="6、exclude函数"></a>6、exclude函数</h3><p>exclude函数和filter函数的逻辑正好相反，会排除符合条件的数据，把其他不符合条件的数据返回</p>
+<h1 id="数据库更新操作"><a href="#数据库更新操作" class="headerlink" title="数据库更新操作"></a>数据库更新操作</h1><h3 id="1、通过update函数更新"><a href="#1、通过update函数更新" class="headerlink" title="1、通过update函数更新"></a>1、通过update函数更新</h3><p>update函数可以搭配filter或者get函数一起使用，例如：</p>
+<p><code>models.Account.objects.filter(username=&#39;wang&#39;).update(password=&#39;123&#39;)</code></p>
+<h3 id="2、通过delete删除数据"><a href="#2、通过delete删除数据" class="headerlink" title="2、通过delete删除数据"></a>2、通过delete删除数据</h3><p>delete函数可以删除数据，语法和update函数相同</p>
+<h3 id="3、数据库查询中关联外键和多对多关系"><a href="#3、数据库查询中关联外键和多对多关系" class="headerlink" title="3、数据库查询中关联外键和多对多关系"></a>3、数据库查询中关联外键和多对多关系</h3><p>正向的外键查询可以直接用字段名来查询返回，例如：</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">王晨昊</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/07/21/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">http://example.com/2021/07/21/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nccoder</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/07/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BglobalData/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">微信小程序之globalData</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/21/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaScript变量类型</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">王晨昊</div><div class="author-info__description">日常分享以及学习分享</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9D%A5%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%EF%BC%88ORM%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">通过shell命令行来创建数据对象（ORM）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.</span> <span class="toc-text">1、启动命令行工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%BC%95%E5%85%A5%E6%89%80%E9%9C%80%E8%A6%81%E6%93%8D%E4%BD%9C%E7%9A%84app%E7%9A%84models"><span class="toc-number">1.2.</span> <span class="toc-text">2、引入所需要操作的app的models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%80%9A%E8%BF%87%E4%BB%A3%E7%A0%81%E6%9D%A5%E5%88%9B%E5%BB%BA"><span class="toc-number">1.3.</span> <span class="toc-text">3、通过代码来创建</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E9%80%9A%E8%BF%87%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">1.通过对象的静态函数直接创建</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%85%88%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%86%8D%E7%94%A8%E9%9D%9E%E9%9D%99%E6%80%81%E5%AF%B9%E8%B1%A1%E5%87%BD%E6%95%B0%E6%9D%A5%E4%BF%9D%E5%AD%98"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">2.先实例化对象，再用非静态对象函数来保存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AF%B9%E5%A4%96%E9%94%AE%E7%9A%84%E5%85%B3%E8%81%94%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">4、对外键的关联操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%AF%B9%E5%A4%96%E9%94%AE%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%AF%B9%E8%B1%A1%E8%B5%8B%E5%80%BC"><span class="toc-number">1.4.0.1.</span> <span class="toc-text">1.对外键的字段名进行对象赋值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AF%B9%E5%A4%96%E9%94%AE%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D-id%E8%BF%9B%E8%A1%8C%E6%95%B4%E6%95%B0%E7%9A%84%E8%B5%8B%E5%80%BC"><span class="toc-number">1.4.0.2.</span> <span class="toc-text">2.对外键的字段名_id进行整数的赋值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%A4%9A%E5%AF%B9%E5%A4%9AManyToManyField%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">5、多对多ManyToManyField的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%85%88%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">1.先创建对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AF%B9%E5%88%9B%E5%BB%BA%E6%88%90%E5%8A%9F%E7%9A%84%E5%AF%B9%E8%B1%A1%E8%BF%9B%E8%A1%8C%E6%B7%BB%E5%8A%A0%E5%A4%96%E9%94%AE%E5%85%B3%E8%81%94-%E6%9C%AC%E8%A1%A8%E4%B8%ADtags"><span class="toc-number">1.5.0.2.</span> <span class="toc-text">2.对创建成功的对象进行添加外键关联(本表中tags)</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9D%A5%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="toc-number">2.</span> <span class="toc-text">通过shell命令行来查询数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%9F%A5%E8%AF%A2%E5%85%A8%E9%83%A8"><span class="toc-number">2.1.</span> <span class="toc-text">1、查询全部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%89%B9%E5%AE%9A%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.2.</span> <span class="toc-text">2、特定条件查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E7%AD%89%E4%BA%8E"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">判断等于</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%B8%8D%E7%AD%89%E4%BA%8E"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">判断不等于</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.2.0.3.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#stratswith"><span class="toc-number">2.2.0.4.</span> <span class="toc-text">stratswith</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#endswith"><span class="toc-number">2.2.0.5.</span> <span class="toc-text">endswith</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IN%E2%80%93%E5%8C%BA%E9%97%B4%E5%8C%B9%E9%85%8D"><span class="toc-number">2.2.0.6.</span> <span class="toc-text">IN–区间匹配</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#range%E5%8C%BA%E9%97%B4%E5%8C%B9%E9%85%8D"><span class="toc-number">2.2.0.7.</span> <span class="toc-text">range区间匹配</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%8C%B9%E9%85%8D%E5%87%BA%E7%89%B9%E5%AE%9A%E7%9A%84%E6%97%B6%E9%97%B4%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E5%AD%97%E6%AE%B5"><span class="toc-number">2.3.</span> <span class="toc-text">3、匹配出特定的时间范围内的字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%9C%A8%E7%AD%9B%E9%80%89%E4%B8%AD%E5%88%A9%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">4、在筛选中利用正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E9%80%9A%E8%BF%87get%E5%87%BD%E6%95%B0%E6%9D%A5%E7%B2%BE%E7%A1%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.5.</span> <span class="toc-text">5、通过get函数来精确查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81exclude%E5%87%BD%E6%95%B0"><span class="toc-number">2.6.</span> <span class="toc-text">6、exclude函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="toc-number"></span> <span class="toc-text">数据库更新操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%80%9A%E8%BF%87update%E5%87%BD%E6%95%B0%E6%9B%B4%E6%96%B0"><span class="toc-number">0.1.</span> <span class="toc-text">1、通过update函数更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%80%9A%E8%BF%87delete%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">0.2.</span> <span class="toc-text">2、通过delete删除数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E4%B8%AD%E5%85%B3%E8%81%94%E5%A4%96%E9%94%AE%E5%92%8C%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB"><span class="toc-number">0.3.</span> <span class="toc-text">3、数据库查询中关联外键和多对多关系</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/12/hello-world/" title="Hello World"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2021/12/12/hello-world/" title="Hello World">Hello World</a><time datetime="2021-12-12T06:43:40.716Z" title="发表于 2021-12-12 14:43:40">2021-12-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BglobalData/" title="微信小程序之globalData"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微信小程序之globalData"/></a><div class="content"><a class="title" href="/2021/07/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8BglobalData/" title="微信小程序之globalData">微信小程序之globalData</a><time datetime="2021-07-22T16:00:00.000Z" title="发表于 2021-07-23 00:00:00">2021-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/21/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" title="Django-ORM对数据库操作"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django-ORM对数据库操作"/></a><div class="content"><a class="title" href="/2021/07/21/Django-ORM%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" title="Django-ORM对数据库操作">Django-ORM对数据库操作</a><time datetime="2021-07-20T16:00:00.000Z" title="发表于 2021-07-21 00:00:00">2021-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/21/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" title="JavaScript变量类型"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript变量类型"/></a><div class="content"><a class="title" href="/2021/07/21/JavaScript%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" title="JavaScript变量类型">JavaScript变量类型</a><time datetime="2021-07-20T16:00:00.000Z" title="发表于 2021-07-21 00:00:00">2021-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/21/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" title="Django迁移数据库表示报错的解决方案"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django迁移数据库表示报错的解决方案"/></a><div class="content"><a class="title" href="/2021/07/21/Django%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%A4%BA%E6%8A%A5%E9%94%99AttributeError%20%EF%BC%9A/" title="Django迁移数据库表示报错的解决方案">Django迁移数据库表示报错的解决方案</a><time datetime="2021-07-20T16:00:00.000Z" title="发表于 2021-07-21 00:00:00">2021-07-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 王晨昊</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
