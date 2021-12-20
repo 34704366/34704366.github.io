@@ -1357,11 +1357,11 @@ input::placeholder {
   z-index: -999;
   width: 100%;
   height: 100%;
-  background: -webkit-linear-gradient(315deg, rgba(235,194,237,1) 0, rgba(235,194,237,1) 1%, rgba(144,79,242,1) 51%, rgba(81,98,247,1) 100%);
-  background: -moz-linear-gradient(315deg, rgba(235,194,237,1) 0, rgba(235,194,237,1) 1%, rgba(144,79,242,1) 51%, rgba(81,98,247,1) 100%);
-  background: -o-linear-gradient(315deg, rgba(235,194,237,1) 0, rgba(235,194,237,1) 1%, rgba(144,79,242,1) 51%, rgba(81,98,247,1) 100%);
-  background: -ms-linear-gradient(315deg, rgba(235,194,237,1) 0, rgba(235,194,237,1) 1%, rgba(144,79,242,1) 51%, rgba(81,98,247,1) 100%);
-  background: linear-gradient(135deg, rgba(235,194,237,1) 0, rgba(235,194,237,1) 1%, rgba(144,79,242,1) 51%, rgba(81,98,247,1) 100%);
+  background: -webkit-linear-gradient(215deg, rgba(232,243,255,1) 0, rgba(238,215,244,1) 50%, rgba(227,241,252,1) 100%);
+  background: -moz-linear-gradient(215deg, rgba(232,243,255,1) 0, rgba(238,215,244,1) 50%, rgba(227,241,252,1) 100%);
+  background: -o-linear-gradient(215deg, rgba(232,243,255,1) 0, rgba(238,215,244,1) 50%, rgba(227,241,252,1) 100%);
+  background: -ms-linear-gradient(215deg, rgba(232,243,255,1) 0, rgba(238,215,244,1) 50%, rgba(227,241,252,1) 100%);
+  background: linear-gradient(235deg, rgba(232,243,255,1) 0, rgba(238,215,244,1) 50%, rgba(227,241,252,1) 100%);
   background-attachment: local;
   background-position: center;
   -webkit-background-size: cover;
