@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>随机森林 GDBT XGboost 三种学习的分类算法笔记 | nccoder</title><meta name="keywords" content="机器学习,人工智能,分类算法"><meta name="author" content="王晨昊"><meta name="copyright" content="王晨昊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="监督学习的分类算法集成算法 XGboost和随机森林等算法都是决策树来做基分类器  随机森林（Random Forest），GBDT(Gradient Boosting Decision Tree)梯度提升决策树，XGboost（Extreme Gradient Boosting，是一种基于GBDT来改进实现的算法）都是集成算法（Emseble Learning）。是构建多个基学习器，然后通过一定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随机森林 GDBT XGboost 三种学习的分类算法笔记">
+<meta property="og:url" content="http://example.com/2022/04/09/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-GDBT-XGboost-%E4%B8%89%E7%A7%8D%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="nccoder">
+<meta property="og:description" content="监督学习的分类算法集成算法 XGboost和随机森林等算法都是决策树来做基分类器  随机森林（Random Forest），GBDT(Gradient Boosting Decision Tree)梯度提升决策树，XGboost（Extreme Gradient Boosting，是一种基于GBDT来改进实现的算法）都是集成算法（Emseble Learning）。是构建多个基学习器，然后通过一定">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img0.baidu.com/it/u=3885357848,2008775213&fm=253&fmt=auto&app=138&f=JPEG?w=900&h=500">
+<meta property="article:published_time" content="2022-04-09T08:51:26.000Z">
+<meta property="article:modified_time" content="2022-04-09T08:59:35.935Z">
+<meta property="article:author" content="王晨昊">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="分类算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img0.baidu.com/it/u=3885357848,2008775213&fm=253&fmt=auto&app=138&f=JPEG?w=900&h=500"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/04/09/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-GDBT-XGboost-%E4%B8%89%E7%A7%8D%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '随机森林 GDBT XGboost 三种学习的分类算法笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-09 16:59:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fa-fw fab fa-github"></i><span> 仓库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">nccoder</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fa-fw fab fa-github"></i><span> 仓库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">随机森林 GDBT XGboost 三种学习的分类算法笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-09T08:51:26.000Z" title="发表于 2022-04-09 16:51:26">2022-04-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-09T08:59:35.935Z" title="更新于 2022-04-09 16:59:35">2022-04-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="随机森林 GDBT XGboost 三种学习的分类算法笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="监督学习的分类算法"><a href="#监督学习的分类算法" class="headerlink" title="监督学习的分类算法"></a>监督学习的分类算法</h1><h2 id="集成算法"><a href="#集成算法" class="headerlink" title="集成算法"></a>集成算法</h2><blockquote>
+<p>XGboost和随机森林等算法都是决策树来做基分类器</p>
+</blockquote>
+<p>随机森林（Random Forest），GBDT(Gradient Boosting Decision Tree)梯度提升决策树，XGboost（Extreme Gradient Boosting，是一种基于GBDT来改进实现的算法）都是<strong>集成算法（Emseble Learning）</strong>。是构建多个基学习器，然后通过一定策略结合把它们来完成学习任务的，常常可以获得比单一学习效果更好的学习器。</p>
+<blockquote>
+<p>集成学习算法封装在sklearn中emseble模块中</p>
+</blockquote>
+<p>按照个体学习器（基学习器）之间的关系，主要分为Bagging和Boosting算法思想。</p>
+<h4 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h4><p>Bagging原理是自助采样法（bootstrap sampling）随机得到一些样本集训练，用来分别训练不同的基学习器，然后对不同的基学习器得到的结果<strong>投票得出最终的分类结果</strong>。与普通的采样的区别是，bootstrap 是<strong>有放回的采样</strong>，也就是说一个集合中的某些样本有可能在一次采样中被选中多次，而部分样本有可能在一次采样中不被选中。最终每一次采样结果都有大约63.3%的样本被选中。考虑N次放回重复抽样，每次抽样每个样本被选中的概率为 1/N，进行N次抽样，某一个样本被选中的概率为：</p>
+<p><img src="image-20220409165851920.png" alt="image-20220409165851920"></p>
+<p>随机森林就是Bagging算法族中的一种。</p>
+<h5 id="采用bootstrap采样的好处"><a href="#采用bootstrap采样的好处" class="headerlink" title="采用bootstrap采样的好处"></a>采用bootstrap采样的好处</h5><p>集成学习的目的为了使用多个不同的子模型来增加最终模型预测结果的鲁棒性和稳定性，如果多个子模型都采用同样的数据集训练，那么训练出的子模型都是相同的，集成学习将会没有效果。使用bootstrap可以从原始数据集中得到很多个不同的数据集，而且天然的有测试集（余下的36%的样本）来评估算法模型的识别率。这些余下的样本称为袋外数据（out of bag data, oob）这样的话，使用随机森林时，我们<strong>可以不预先划分测试集和训练集</strong>，只需要用oob数据来做为测试集来验证即可（<strong>需要在样本个数N足够大的情况下才可以</strong>，如果样本个数很小，那么有可能出现没有或者有很少的oob数据的情况）。</p>
+<p>在sklearn中我们可以创建随机森林分类器的时候指定 <code>oob_score=True</code> 使用oob数据进行验证:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rfc = RandomForestClassifier(n_estimators=<span class="number">100</span>,oob_score=<span class="literal">True</span>, bootstrap=<span class="literal">True</span>, criterion=criterion)</span><br><span class="line">rfc = rfc.fit(wine.data,wine.target)</span><br><span class="line"><span class="built_in">print</span>(rfc.oob_score_)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h4><p>Boosting是提升算法，它通过反复学习得到一系列弱分类器，然后<strong>组合这些弱分类器得到一个强分类器</strong>，把弱学习器提升为强学习器的过程。主要分为两个部分，加法模型和向前分步。加法模型就是把一系列的弱学习器相加串联为强学习器。其中GBDT和XGboost就是属于Boosting算法中的加法模型。</p>
+<p>Boosting方法训练基分类器时采用串行的方式，各个基分类器之间有依赖。（Bagging方法中各个基分类器之间没有依赖关系，可以进行并行训练，但是Boosting是串行的）</p>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><blockquote>
+<p>本文介绍的几种集成算法全部都是基于决策树做基学习器，故首先介绍决策树</p>
+</blockquote>
+<p>决策树是一种有监督的机器学习方法，是一种树形结构，其中每个内部节点表示一个属性上的判断，每个分支代表一个判断结果的输出，最后每个叶节点代表一种分类结果。</p>
+<p>如下图就是一个简单的分类问题训练得来的决策树，拿到测试集之后只需要一步一步根据条件判断就可以得到最终的结果。</p>
+<p><img src="image-20220409165323850.png" alt="image-20220409165323850"></p>
+<h4 id="决策树生成过程"><a href="#决策树生成过程" class="headerlink" title="决策树生成过程"></a>决策树生成过程</h4><p>决策树的训练中有两个关键的点，第一个是每个节点分裂的<strong>特征的选择</strong>（选择哪个属性来进行判断），第二个是该特征的对应<strong>阈值的选择</strong>（用该属性的哪个值来进行划分）。一般的算法中通常采用二叉树来训练模型，一些情况下也可以用多叉树来处理特殊的数据。</p>
+<p>决策树也有很多种类，其中最常用的是CART树（Classification And Regression Tree）分类回归树，该树的结构是二叉树，一个特征通过一个阈值来划分成左右两个节点。如果是分类树，通常采用GINI系数来衡量对每个特征划分之后的收益，GINI系数代表了总体的不纯度，GINI在0~1之间，越接近1代表总体越混乱，越接近0代表总体越有序，GINI == 1理论上代表总体毫无关系，GINI == 0 理论上代表总体有序，和信息熵的概念类似。（在sklearn创建随机森林等的模型时，默认采用的是GINI系数的CART树来训练基学习器，我们可以手动指定参数来指定其他的损失函数）</p>
+<blockquote>
+<p>gini系数公式如下：</p>
+</blockquote>
+<p><img src="image-20220409165335162.png" alt="image-20220409165335162"></p>
+<p>如果是回归树通常采用平方平均误差（MSE）来衡量收益，公式为：<img src="image-20220409165344337.png" alt="image-20220409165344337"></p>
+<p>目标也是让该函数最小。</p>
+<h5 id="具体生成过程："><a href="#具体生成过程：" class="headerlink" title="具体生成过程："></a>具体生成过程：</h5><p>1、计算对每一种特征的每一个阈值的gini系数，选择最小的情况来作为本节点的划分，之后依次对生成的子节点通过同样的原则来进行划分。</p>
+<p>2、如果某个节点已经全部被分为一类或者没有待划分的特征属性，那么停止子节点划分。</p>
+<p>3、在实际训练中，通常会用到剪枝策略，剪枝是为了防止树出现过拟合的情况，有<strong>预剪枝</strong>和<strong>后剪枝</strong>的基本策略。<strong>预剪枝</strong>：核心思想就是在每一次实际对结点进行进一步划分之前，先采用验证集的数据来验证如果划分是否能提高划分的准确性。如果不能，就把结点标记为叶结点并退出进一步划分；如果可以就继续递归生成节点。<strong>后剪枝</strong>：后剪枝则是先从训练集生成一颗完整的决策树，然后自底向上地对非叶结点进行考察，若将该结点对应的子树替换为叶结点能带来泛化性能提升，则将该子树替换为叶结点。</p>
+<h2 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h2><p>随机森林算法（Random Forest， RF）是利用上述的Bagging思想的一种集成学习方法，在训练阶段，随机森林使用bootstrap采样从输入训练数据集中采集多个不同的子训练数据集来依次训练多个不同决策树；在预测阶段，随机森林将内部多个决策树的预测结果取平均得到最终的结果。</p>
+<p>在sklearn实现中，可以通过指定<code>criterion</code>参数来创建不同的收益计算函数的模型，分类模型可以指定‘gini’或者’entropy’，回归可以指定’mse’或者’mae’。</p>
+<h5 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h5><p>通过指定的生成基分类器的数量n，通过上述的bootstrap准则来抽取出对应的n组样本，然后对每一组分别训练得到一个决策树。</p>
+<h5 id="模型预测"><a href="#模型预测" class="headerlink" title="模型预测"></a>模型预测</h5><p>将要预测的样本输入到每一个决策树中，根据所有决策树的结果进行投票选择最终结果。（如果是回归树，则对所有回归树结果进行求平均值）</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
+<li>相较于决策树，识别率提高很多。（原理是假设决策树识别率百分之八十，那么n个决策树组合起来投票产生结果的错误的情况就是超过半数的决策树识别错误，概率大大减少）</li>
+<li>相较于Boosting算法可以实现并行计算</li>
+<li>有较强的随机性，抗噪声能力很强，不容易过拟合</li>
+</ol>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ol>
+<li>如果设置决策树个数很多的话，训练过程中会占用大量的空间和时间。</li>
+<li>对于维度非常高的稀疏数据，表现不好。</li>
+</ol>
+<h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>GBDT（Gradient Boosting Decision Tree）梯度提升决策树，是一种集成学习方法，集成思想采用Boosting思想来训练模型，</p>
+<p>它的基本思路是将基分类器层层叠加，每一层在训练的时候，对前一层基分类器分错的样本，给予更高的权重。测试时，根据各层分类器的结果的加权得到最终结果。</p>
+<p>GBDT由多棵回归决策树（弱分类器）组成，（但GBDT强分类器可以用于回归和分类预测）。通过多棵回归树来共同决策，第一个树按照正常的回归树来学习，之后每一棵回归树都是学习之前所有树的结论和残差，拟合得到一个当前的<strong>残差</strong>回归树。残差是 = 真实值 - 预测值。提升就是整个迭代过程生成的所有回归树的累加。</p>
+<blockquote>
+<p>一个训练模型的案例参考：</p>
+</blockquote>
+<p><img src="image-20220409165355078.png" alt="image-20220409165355078"></p>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<p>GDBT既可以做为分类模型也可以作为回归模型，但是其中用到的基学习器都是回归决策树。</p>
+<h4 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h4><p>之所以叫梯度提升，是因为一般来说在每一轮迭代的时候都由回归树生成一个预测值，此时的损失函数采用均方差损失函数，公式为：<img src="file://C:\Users%E9%A3%8E%E8%BD%BB%E4%BA%91%E6%B7%A1\Desktop%E7%AC%94%E8%AE%B0%E7%AE%97%E6%B3%95%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91-%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-xgboost\68747470733a2f2f6a756c796564752d696d672e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f717565736261736536343135353231343936323033343934343633382e676966.gif?lastModify=1649494438" alt="img"></p>
+<p>则负的梯度为：<img src="file://C:\Users%E9%A3%8E%E8%BD%BB%E4%BA%91%E6%B7%A1\Desktop%E7%AC%94%E8%AE%B0%E7%AE%97%E6%B3%95%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91-%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-xgboost\68747470733a2f2f6a756c796564752d696d672e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f717565736261736536343135353231343936323431363637303937332e676966.gif?lastModify=1649494463" alt="img"></p>
+<p>可以看出来刚好就是 真实值 - 预测值，即上述的残差值，所以每次利用残差值来构建下一棵树，实际上就是一个梯度提升的过程。</p>
+<h4 id="模型预测-1"><a href="#模型预测-1" class="headerlink" title="模型预测"></a>模型预测</h4><p>预测的过程，即为将样本数据依次放入基学习器中进行学习，最后将每颗树的预测值累加起来即为最终结果。</p>
+<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>预测阶段的计算速度快，树与树之间可并行化计算。</li>
+<li>因为Boosting模型保证低偏差，故在基学习器上可以关注于降低方差，树的深度不用很深，不容易出现过拟合的现象 </li>
+</ol>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>GBDT在高维稀疏的数据集上，表现不如支持向量机或者神经网络。</li>
+<li>训练过程需要串行训练，只能在决策树内部采用一些局部并行的手段提高训练速度。</li>
+</ol>
+<h2 id="XGboost"><a href="#XGboost" class="headerlink" title="XGboost"></a>XGboost</h2><p>XGboost（Extreme Gradient Boosting）是一种基于GBDT算法改进细节而得到的算法。</p>
+<p>在GBDT中，每次生成下一个弱学习器，都是把损失函数的梯度（残差）作为学习目标，相当于利用梯度下降法进行优化来逼近损失函数的最小值，也就是使得损失函数为0，最终学习器尽可能接近真实结果。</p>
+<p>在xgboost中，最大的区别是在于目标函数的定义</p>
+<p>1、把损失函数的<strong>二阶泰勒展开的差值</strong>作为学习目标，相当于利用牛顿法进行优化，来逼近损失函数的最小值，也就是使得损失函数为0。</p>
+<p>二阶泰勒展开的差值为：<img src="image-20220409165448561.png" alt="image-20220409165448561"></p>
+<p>推理过程：</p>
+<p><img src="image-20220409165454686.png" alt="image-20220409165454686"></p>
+<p>本质上是用一个近似的函数来代替残差进行拟合计算，如此的话最终结果可以具有更强的泛化能力，整体方差更小</p>
+<p>2、在目标函数中加入正则项</p>
+<p>正则项是为了防止模型过拟合。故一般的损失函数L(x)变为目标函数：<img src="image-20220409165505147.png" alt="image-20220409165505147"></p>
+<p>随着树的复杂度增大，对应的目标函数也就变大，这样就有效防止了过拟合</p>
+<p>正则项函数的定义一种实现为：</p>
+<p><img src="image-20220409165510898.png" alt="image-20220409165510898"></p>
+<p>其中T为叶子节点的个数，w为叶子节点的预测值，对叶子节点个数进行惩罚，这样就实现了在训练过程中预剪枝。xgboost是对GDBT算法的工程化实现，在其中引入了很多的细节，最终可以实现比GDBT识别率更高，模型泛化能力更高。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">王晨昊</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/04/09/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-GDBT-XGboost-%E4%B8%89%E7%A7%8D%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">http://example.com/2022/04/09/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-GDBT-XGboost-%E4%B8%89%E7%A7%8D%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nccoder</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="post-meta__tags" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><a class="post-meta__tags" href="/tags/%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/">分类算法</a></div><div class="post_share"><div class="social-share" data-image="https://img0.baidu.com/it/u=3885357848,2008775213&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=900&amp;h=500" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/03/26/V8%E5%BC%95%E6%93%8E%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/"><img class="next-cover" src="https://img2.baidu.com/it/u=2646346181,2428173940&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=646&amp;h=500" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">V8引擎的垃圾回收机制</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">王晨昊</div><div class="author-info__description">日常分享以及学习分享</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/jnuwangchenhao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wangchenhao@stu2021.jnu.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">和我一起学习吧</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">监督学习的分类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">集成算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bagging"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">Bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%87%E7%94%A8bootstrap%E9%87%87%E6%A0%B7%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">1.1.0.1.1.</span> <span class="toc-text">采用bootstrap采样的好处</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Boosting"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">Boosting</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-number">1.2.</span> <span class="toc-text">决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">决策树生成过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.2.0.1.1.</span> <span class="toc-text">具体生成过程：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="toc-number">1.3.</span> <span class="toc-text">随机森林</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.0.0.1.</span> <span class="toc-text">训练过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B"><span class="toc-number">1.3.0.0.2.</span> <span class="toc-text">模型预测</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">1.3.0.0.3.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">1.3.0.0.4.</span> <span class="toc-text">缺点</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT"><span class="toc-number">1.4.</span> <span class="toc-text">GBDT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6"><span class="toc-number">1.4.0.1.</span> <span class="toc-text">梯度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B-1"><span class="toc-number">1.4.0.2.</span> <span class="toc-text">模型预测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-1"><span class="toc-number">1.4.0.3.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="toc-number">1.4.0.4.</span> <span class="toc-text">缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGboost"><span class="toc-number">1.5.</span> <span class="toc-text">XGboost</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/09/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-GDBT-XGboost-%E4%B8%89%E7%A7%8D%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="随机森林 GDBT XGboost 三种学习的分类算法笔记"><img src="https://img0.baidu.com/it/u=3885357848,2008775213&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=900&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="随机森林 GDBT XGboost 三种学习的分类算法笔记"/></a><div class="content"><a class="title" href="/2022/04/09/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-GDBT-XGboost-%E4%B8%89%E7%A7%8D%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="随机森林 GDBT XGboost 三种学习的分类算法笔记">随机森林 GDBT XGboost 三种学习的分类算法笔记</a><time datetime="2022-04-09T08:51:26.000Z" title="发表于 2022-04-09 16:51:26">2022-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/26/V8%E5%BC%95%E6%93%8E%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" title="V8引擎的垃圾回收机制"><img src="https://img2.baidu.com/it/u=2646346181,2428173940&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=646&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="V8引擎的垃圾回收机制"/></a><div class="content"><a class="title" href="/2022/03/26/V8%E5%BC%95%E6%93%8E%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" title="V8引擎的垃圾回收机制">V8引擎的垃圾回收机制</a><time datetime="2022-03-26T14:29:39.000Z" title="发表于 2022-03-26 22:29:39">2022-03-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/24/CSS%E4%BC%98%E5%85%88%E7%BA%A7/" title="CSS优先级"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffile.boxuegu.com%2Ffa4439b0c04e47829ca9fe1697347a8d.png&amp;refer=http%3A%2F%2Ffile.boxuegu.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1650633227&amp;t=b06bd0b121a8aee58d8abd694dbc32da" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS优先级"/></a><div class="content"><a class="title" href="/2022/03/24/CSS%E4%BC%98%E5%85%88%E7%BA%A7/" title="CSS优先级">CSS优先级</a><time datetime="2022-03-24T09:53:10.000Z" title="发表于 2022-03-24 17:53:10">2022-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/CSS%E9%80%89%E6%8B%A9%E5%99%A8/" title="CSS选择器"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffile.boxuegu.com%2Ffa4439b0c04e47829ca9fe1697347a8d.png&amp;refer=http%3A%2F%2Ffile.boxuegu.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1650633227&amp;t=b06bd0b121a8aee58d8abd694dbc32da" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS选择器"/></a><div class="content"><a class="title" href="/2022/03/23/CSS%E9%80%89%E6%8B%A9%E5%99%A8/" title="CSS选择器">CSS选择器</a><time datetime="2022-03-23T13:48:21.000Z" title="发表于 2022-03-23 21:48:21">2022-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E5%89%8D%E7%AB%AF/" title="什么是微前端"><img src="https://img0.baidu.com/it/u=3713120937,2168914409&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=356&amp;h=240" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="什么是微前端"/></a><div class="content"><a class="title" href="/2022/03/23/%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E5%89%8D%E7%AB%AF/" title="什么是微前端">什么是微前端</a><time datetime="2022-03-23T13:17:17.000Z" title="发表于 2022-03-23 21:17:17">2022-03-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 王晨昊</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">简单记录学习和生活</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="I,L,O,V,E,Y,O,U" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
