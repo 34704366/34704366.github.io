@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>nccoder | nccoder</title><meta name="keywords" content="博客, python, javaScript, linux, 微信小程序, 大前端"><meta name="author" content="王晨昊"><meta name="copyright" content="王晨昊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文章背景：许多现实世界的应用需要长序列时间序列的预测，例如电力消耗规划等实际问题。长序列时间序列预测(Long sequence time-series forecasting，LSTF)要求模型具有较高的预测能力，即能够准确地捕捉输出与输入之间的长期依赖关系。近年来的研究表明，Transformer具有提高预测能力的潜力。然而，Transformer存在几个严重的问题，使其不能直接适用于LSTF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nccoder">
+<meta property="og:url" content="http://example.com/2022/12/31/informer/index.html">
+<meta property="og:site_name" content="nccoder">
+<meta property="og:description" content="文章背景：许多现实世界的应用需要长序列时间序列的预测，例如电力消耗规划等实际问题。长序列时间序列预测(Long sequence time-series forecasting，LSTF)要求模型具有较高的预测能力，即能够准确地捕捉输出与输入之间的长期依赖关系。近年来的研究表明，Transformer具有提高预测能力的潜力。然而，Transformer存在几个严重的问题，使其不能直接适用于LSTF">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp07%2F54042116561053-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642560280&t=0e978453beba5c59c295b35dbaf248e0">
+<meta property="article:published_time" content="2022-12-31T07:57:04.532Z">
+<meta property="article:modified_time" content="2023-01-07T10:04:49.734Z">
+<meta property="article:author" content="王晨昊">
+<meta property="article:tag" content="博客, python, javaScript, linux, 微信小程序, 大前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp07%2F54042116561053-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642560280&t=0e978453beba5c59c295b35dbaf248e0"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/12/31/informer/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'nccoder',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-07 18:04:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fa-fw fab fa-github"></i><span> 仓库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">nccoder</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fa-fw fab fa-github"></i><span> 仓库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-31T07:57:04.532Z" title="发表于 2022-12-31 15:57:04">2022-12-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-07T10:04:49.734Z" title="更新于 2023-01-07 18:04:49">2023-01-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h3 id="文章背景："><a href="#文章背景：" class="headerlink" title="文章背景："></a>文章背景：</h3><p>许多现实世界的应用需要<strong>长序列时间序列的预测</strong>，例如电力消耗规划等实际问题。长序列时间序列预测(Long sequence time-series forecasting，LSTF)要求模型具有较高的预测能力，即能够准确地捕捉输出与输入之间的长期依赖关系。近年来的研究表明，<strong>Transformer具有提高预测能力的潜力</strong>。然而，Transformer存在几个严重的问题，使其不能直接适用于LSTF问题，例<strong>如二次时间复杂度</strong>、<strong>高内存使用量</strong>和<strong>编码器-解码器体系结构固有的局限性</strong>。</p>
+<h3 id="原生transformer存在的问题："><a href="#原生transformer存在的问题：" class="headerlink" title="原生transformer存在的问题："></a>原生transformer存在的问题：</h3><ol>
+<li>self-attntion机制的二次计算复杂度。self-attention机制的点积操作使每层的时间复杂度和内存使用量为O(n^2)。</li>
+<li>对长输入进行堆叠时的内存瓶颈。J个encoder-decoder层的堆栈使总内存使用量为O(J * L^2)，这限制了模型在接收长序列输入时的可伸缩性。</li>
+<li>由于解码器的计算是step-by-step，每一个点的结果需要依赖上一个点的计算，如果数据量大的情况下，推理速度会很慢。</li>
+</ol>
+<h3 id="文章贡献："><a href="#文章贡献：" class="headerlink" title="文章贡献："></a>文章贡献：</h3><p>为了解决这些问题，这篇文章中设计了一种基于Transformer的LSTF模型，即Informer模型，该模型具有<strong>三个显著特征</strong>: </p>
+<ol>
+<li>ProbSpare self-attention机制，将原生transformer中self-attention机制的计算复杂度改进到了O(n*logn)，通过筛选Query 中的重要部分，减少相似度计算。</li>
+<li>distilling操作，将级联层输入减半来突出主导注意，并有效地处理过长的输入序列。</li>
+<li>改良了transformer的解码器，通过一次正向操作就可以计算出解码器输出，而不是通过stpe-by-step的方式来进行预测，减少了推理部分的计算。</li>
+</ol>
+<h3 id="编码器结构："><a href="#编码器结构：" class="headerlink" title="编码器结构："></a>编码器结构：</h3><h5 id="位置编码："><a href="#位置编码：" class="headerlink" title="位置编码："></a>位置编码：</h5><p><img src="informer/640-16724745487096.png" alt="图片"></p>
+<ol>
+<li><p>局部时间戳。即Transformer中的固定位置嵌入。计算方式为：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_svg/wcib2GksmGOlHr1z1jobUqwITPQ2YwWXZgotxEFNZoZgJCSq2x6X9cwFhW0BcmudMvn5tKe0DsKB0xNhVOzIjzwcl95ric43jl/640?wx_fmt=svg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">，<img src="https://mmbiz.qpic.cn/mmbiz_svg/wcib2GksmGOlHr1z1jobUqwITPQ2YwWXZgotxEFNZoZgJCSq2x6X9cwFhW0BcmudMvn5tKe0DsKB0xNhVOzIjzwcl95ric43jl/640?wx_fmt=svg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>（这种方法就是原生transformer paper中提出的方法）</p>
+</li>
+<li><p>全局时间戳。这里使用的可学习嵌入表示<img src="https://mmbiz.qpic.cn/mmbiz_svg/wcib2GksmGOlHr1z1jobUqwITPQ2YwWXZn0ZP94gyzvLWpiasiaK7x7UQR3Fxe3wWjjTYG6beZ7u33LLGynjB2W5CBq9cYeeRE5/640?wx_fmt=svg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">。具体实现时，构建一个词汇表，使用Embedding层表示每一个“词汇”。</p>
+</li>
+<li><p>为对齐维度，使用1D卷积将输入标量<img src="informer/640.svg" alt="640">转为向量![640 (1)](informer/640 (1).svg)，计算方法为：<img src="https://mmbiz.qpic.cn/mmbiz_svg/wcib2GksmGOlHr1z1jobUqwITPQ2YwWXZb4Vf337Abut9Wr7viatotjiceHp7jtiaXC114OuwicZ28U1fsYq08xtJa9H8HQCMV44J/640?wx_fmt=svg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+</li>
+</ol>
+<h5 id="prob-attention："><a href="#prob-attention：" class="headerlink" title="prob attention："></a>prob attention：</h5><p><img src="informer/640-167247500520418.png" alt="图片"></p>
+<h6 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h6><p>如上图中，编码器的计算中采用了ProbSparse Self-attention计算，核心思想是由于在self-attention计算之中，通常存在着大量的无用的query和key的计算，例如下图中，左边子图为注意力关联度分布图，颜色越深代表query和key之间的关联程度越强，如右图中，红色的曲线代表较为<strong>”活跃的“query</strong>，其对于每个Key的关注都一些区别，而绿色部分的曲线代表<strong>“不活跃”的query</strong>，其对于每个Key的关注都几乎一样，这样的话说明其对于Key并不敏感，在计算之中也是属于无关紧要的部分。如果能尽量的提取出来活跃的query来进行计算，省略掉不活跃query的计算，那么我们的attention层中就可以省去很多计算。</p>
+<p><img src="informer/image-20221231172310423.png" alt="image-20221231172310423"></p>
+<h6 id="具体计算过程："><a href="#具体计算过程：" class="headerlink" title="具体计算过程："></a>具体计算过程：</h6><p>对于每一个query，计算其与均匀分布的差异，对结果进行排序，找出其中差异最大的n个query。</p>
+<p>计算与均匀分布的差异采用KL散度</p>
+<p><img src="informer/640-16730826728812.png" alt="图片"></p>
+<p>其中第一项是<strong>q</strong>i对于所有的key的Log-Sum-Exp (LSE)，第二项是它们的算数平均值</p>
+<p>基于上面的评价方式，就可以得到ProbSparse self-attetion的公式，即：</p>
+<p><img src="informer/640-16730839957764.png" alt="图片"></p>
+<p>其中，<strong>Q_hat</strong>是和<strong>q</strong>具有相同尺寸的稀疏矩阵，并且它只包含在稀疏评估M(q, M)之中挑选出top-u个query，其中u的大小通过一个采样参数来决定。这使得ProbSparse self-attention对于每个query-key只需要计算O(lnN)复杂度的点积操作。经过paper中证明，其对稀疏评估进行了上边界的计算，从而保证了计算的时间和空间复杂度为O（N*lnN） 。</p>
+<h5 id="distilling"><a href="#distilling" class="headerlink" title="distilling"></a>distilling</h5><p>作为ProbSpare自注意机制的结果，encoder的特征映射存在值V的冗余组合，因此，这里利用distilling操作对具有主导特征的优势特征进行赋予更高权重，并在下一层生成focus self-attention特征映射。从j到j+1层的distilling操作的过程如下：</p>
+<p><img src="informer/640.png" alt="图片"></p>
+<p>其中，[X]AB包含了multi-head probsparse self-attention以及在attention block中的关键操作。Conv1d表示时间序列上的一维卷积操作，并通过ELU作为了激活函数</p>
+<h3 id="解码器结构："><a href="#解码器结构：" class="headerlink" title="解码器结构："></a>解码器结构：</h3><h5 id="前向计算"><a href="#前向计算" class="headerlink" title="前向计算"></a>前向计算</h5><p>原始transformer中解码器的计算机制是step-by-step累次计算，如果数据量较大的情况下，推理的计算会花费很长时间。paper中指出了这一问题，并且提出了在decoder中<strong>一次前向计算</strong>预测长序列输出的算法。</p>
+<p>采用标准解码器结构，即堆叠两个相同的多头注意力层。不同的是，本文采用的是生成式预测（不是step-by-step方式）直接输出多步预测结果。此外，进入到解码器的输入也有所不同：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_svg/wcib2GksmGOlHr1z1jobUqwITPQ2YwWXZOEWTIZLkdSZShuzgcJtbVYJ8X7XR52xjQ3aob0pnXVCFdrq13GBnQJnClNBSibOLt/640?wx_fmt=svg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>其中，<img src="https://mmbiz.qpic.cn/mmbiz_svg/wcib2GksmGOlHr1z1jobUqwITPQ2YwWXZYLR5uictob8rqNJBfpUHftTjG97M5OYcxlibtuWtkJJDrkwoMdPPw5cU2RU2eXib7cC/640?wx_fmt=svg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">表示占位符（预测值）；<img src="https://mmbiz.qpic.cn/mmbiz_svg/wcib2GksmGOlHr1z1jobUqwITPQ2YwWXZ4DFekCekJQ2mvtPufC4LCW2lRA0NnDAIpFrwJMbwb9a7LsJvnK8fYxX40oSnwiaOT/640?wx_fmt=svg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">表示开始“字符”。文中说明该方法源于NLP技术中的动态解码，作者将其扩展为生成式方式，即从靠近预测目标的输入序列中动态采样部分序列作为“开始Token”。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">王晨昊</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/12/31/informer/">http://example.com/2022/12/31/informer/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nccoder</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp07%2F54042116561053-lp.jpg&amp;refer=http%3A%2F%2Fimg.jj20.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642560280&amp;t=0e978453beba5c59c295b35dbaf248e0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/07/%E5%89%8D%E7%AB%AF%E6%96%B0%E6%8A%80%E6%9C%AF/"><img class="prev-cover" src="https://img0.baidu.com/it/u=3713120937,2168914409&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=356&amp;h=240" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">前端新技术</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/08/Vue-nextTick/"><img class="next-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F1331779-07ef0086026d0b9b.jpeg&amp;refer=http%3A%2F%2Fupload-images.jianshu.io&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642560529&amp;t=df5ebd32009def89c4dc10f1e9681edd" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue.$nextTick()</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">王晨昊</div><div class="author-info__description">日常分享以及学习分享</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/jnuwangchenhao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wangchenhao@stu2021.jnu.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">和我一起学习吧</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">文章背景：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%94%9Ftransformer%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">原生transformer存在的问题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E8%B4%A1%E7%8C%AE%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">文章贡献：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">编码器结构：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%EF%BC%9A"><span class="toc-number">4.0.1.</span> <span class="toc-text">位置编码：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#prob-attention%EF%BC%9A"><span class="toc-number">4.0.2.</span> <span class="toc-text">prob attention：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">4.0.2.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">4.0.2.2.</span> <span class="toc-text">具体计算过程：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#distilling"><span class="toc-number">4.0.3.</span> <span class="toc-text">distilling</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%A0%81%E5%99%A8%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">解码器结构：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E8%AE%A1%E7%AE%97"><span class="toc-number">5.0.1.</span> <span class="toc-text">前向计算</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/02/07/%E5%89%8D%E7%AB%AF%E6%96%B0%E6%8A%80%E6%9C%AF/" title="前端新技术"><img src="https://img0.baidu.com/it/u=3713120937,2168914409&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=356&amp;h=240" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端新技术"/></a><div class="content"><a class="title" href="/2023/02/07/%E5%89%8D%E7%AB%AF%E6%96%B0%E6%8A%80%E6%9C%AF/" title="前端新技术">前端新技术</a><time datetime="2023-02-07T08:25:17.000Z" title="发表于 2023-02-07 16:25:17">2023-02-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/informer/" title="无题"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp07%2F54042116561053-lp.jpg&amp;refer=http%3A%2F%2Fimg.jj20.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642560280&amp;t=0e978453beba5c59c295b35dbaf248e0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/12/31/informer/" title="无题">无题</a><time datetime="2022-12-31T07:57:04.532Z" title="发表于 2022-12-31 15:57:04">2022-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/08/Vue-nextTick/" title="Vue.$nextTick()"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F1331779-07ef0086026d0b9b.jpeg&amp;refer=http%3A%2F%2Fupload-images.jianshu.io&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642560529&amp;t=df5ebd32009def89c4dc10f1e9681edd" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue.$nextTick()"/></a><div class="content"><a class="title" href="/2022/11/08/Vue-nextTick/" title="Vue.$nextTick()">Vue.$nextTick()</a><time datetime="2022-11-08T14:24:04.000Z" title="发表于 2022-11-08 22:24:04">2022-11-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/15/javascript%E7%AC%94%E8%AE%B0/" title="javascript笔记"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F1331779-07ef0086026d0b9b.jpeg&amp;refer=http%3A%2F%2Fupload-images.jianshu.io&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642560529&amp;t=df5ebd32009def89c4dc10f1e9681edd" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="javascript笔记"/></a><div class="content"><a class="title" href="/2022/10/15/javascript%E7%AC%94%E8%AE%B0/" title="javascript笔记">javascript笔记</a><time datetime="2022-10-15T08:47:45.000Z" title="发表于 2022-10-15 16:47:45">2022-10-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/js%E4%B8%83%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="js七个小技巧"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F1331779-07ef0086026d0b9b.jpeg&amp;refer=http%3A%2F%2Fupload-images.jianshu.io&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642560529&amp;t=df5ebd32009def89c4dc10f1e9681edd" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js七个小技巧"/></a><div class="content"><a class="title" href="/2022/10/14/js%E4%B8%83%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="js七个小技巧">js七个小技巧</a><time datetime="2022-10-14T02:58:38.000Z" title="发表于 2022-10-14 10:58:38">2022-10-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 王晨昊</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">简单记录学习和生活</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="I,L,O,V,E,Y,O,U" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
