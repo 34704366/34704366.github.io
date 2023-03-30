@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>原理综合笔记 | nccoder</title><meta name="keywords" content="编程技术,linux"><meta name="author" content="王晨昊"><meta name="copyright" content="王晨昊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机原理综合笔记操作系统 汇编器和编译器的区别 汇编器的输入是汇编语言，作用是将汇编代码转换成机器代码。 编译器通常是将高级语言转换成机器语言。  解释语言和编译语言的区别  强类型和弱类型语言  动态类型和静态类型  javascript是解释性语言么？ 不是，在js初期算是解释型语言，浏览器引擎一般先解释再编译，后来google v8提出了JIT（just in time）编译，JS代码会在">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>原理综合笔记 | nccoder</title><meta name="keywords" content="编程技术,linux"><meta name="author" content="王晨昊"><meta name="copyright" content="王晨昊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机原理综合笔记操作系统 汇编器和编译器的区别 汇编器的输入是汇编语言，作用是将汇编代码转换成机器代码。 编译器通常是将高级语言转换成机器语言。  解释语言和编译语言的区别   强类型和弱类型语言  动态类型和静态类型  javascript是解释性语言么？ 不是，在js初期算是解释型语言，浏览器引擎一般先解释再编译，后来google v8提出了JIT（just in time）编译，JS代码会">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原理综合笔记">
 <meta property="og:url" content="http://example.com/2023/02/22/%E5%8E%9F%E7%90%86%E7%BB%BC%E5%90%88%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="nccoder">
-<meta property="og:description" content="计算机原理综合笔记操作系统 汇编器和编译器的区别 汇编器的输入是汇编语言，作用是将汇编代码转换成机器代码。 编译器通常是将高级语言转换成机器语言。  解释语言和编译语言的区别  强类型和弱类型语言  动态类型和静态类型  javascript是解释性语言么？ 不是，在js初期算是解释型语言，浏览器引擎一般先解释再编译，后来google v8提出了JIT（just in time）编译，JS代码会在">
+<meta property="og:description" content="计算机原理综合笔记操作系统 汇编器和编译器的区别 汇编器的输入是汇编语言，作用是将汇编代码转换成机器代码。 编译器通常是将高级语言转换成机器语言。  解释语言和编译语言的区别   强类型和弱类型语言  动态类型和静态类型  javascript是解释性语言么？ 不是，在js初期算是解释型语言，浏览器引擎一般先解释再编译，后来google v8提出了JIT（just in time）编译，JS代码会">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img1.baidu.com/it/u=896707904,4002445675&fm=253&fmt=auto&app=138&f=PNG?w=889&h=500">
 <meta property="article:published_time" content="2023-02-22T03:37:20.000Z">
-<meta property="article:modified_time" content="2023-03-26T12:25:30.492Z">
+<meta property="article:modified_time" content="2023-03-30T02:59:39.540Z">
 <meta property="article:author" content="王晨昊">
 <meta property="article:tag" content="编程技术">
 <meta property="article:tag" content="linux">
@@ -59,7 +59,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-03-26 20:25:30'
+  postUpdate: '2023-03-30 10:59:39'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -153,12 +153,13 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fa-fw fab fa-github"></i><span> 仓库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">nccoder</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fa-fw fab fa-github"></i><span> 仓库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">原理综合笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-22T03:37:20.000Z" title="发表于 2023-02-22 11:37:20">2023-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-26T12:25:30.492Z" title="更新于 2023-03-26 20:25:30">2023-03-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="原理综合笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="计算机原理综合笔记"><a href="#计算机原理综合笔记" class="headerlink" title="计算机原理综合笔记"></a>计算机原理综合笔记</h1><h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><ol>
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fa-fw fab fa-github"></i><span> 仓库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">nccoder</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://gitee.com/jnuwangchenhao"><i class="fa-fw fab fa-github"></i><span> 仓库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">原理综合笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-22T03:37:20.000Z" title="发表于 2023-02-22 11:37:20">2023-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-30T02:59:39.540Z" title="更新于 2023-03-30 10:59:39">2023-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="原理综合笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="计算机原理综合笔记"><a href="#计算机原理综合笔记" class="headerlink" title="计算机原理综合笔记"></a>计算机原理综合笔记</h1><h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><ol>
 <li><p>汇编器和编译器的区别</p>
 <p>汇编器的输入是汇编语言，作用是将汇编代码转换成机器代码。</p>
 <p>编译器通常是将高级语言转换成机器语言。</p>
 </li>
 <li><p>解释语言和编译语言的区别</p>
+<p><img src="%E5%8E%9F%E7%90%86%E7%BB%BC%E5%90%88%E7%AC%94%E8%AE%B0/compile.png" alt="compile"></p>
 </li>
 <li><p>强类型和弱类型语言</p>
 </li>
@@ -400,31 +401,52 @@
 </li>
 <li><p>什么是innerHTML</p>
 </li>
+<li><p>ES6 类的底层原理</p>
+<p>ES6的class实际上还是通过原型链的继承方法，是一种寄生继承的方式，在构造器中根据父类（如果没有声明继承谁那默认继承Object）创建一个对象，然后经过构造器中的操作为这个对象添加属性和方法，把<code>__proto__</code>指向父类构造函数的<code>prototype</code></p>
+</li>
+<li><p>和ES5实现类的区别</p>
+<ol>
+<li>最大的区别是ES5继承本质上是先<strong>创建子类的实例对象</strong>，给对象上添加上父类的方法和属性，再让对象的原型指向父类的构造函数。ES6中更像Java等传统的面向对象语言，先创建一个<strong>父类的实x例对象</strong>（调用super()），然后通过子类中的定义来添加一些属性或者方法到这个实例对象上面。</li>
+<li>ES5中写一个构造函数本质上就是一个普通函数，调用的时候不用new也行，不过就是不能正常的返回生成的实例。ES6中做了判断，如果不是用new关键字调用的就会报错</li>
+<li>变量提升：ES6 class的实现并没有变量提升，就类似于let 和 var的区别</li>
+<li>class里面可以直接用static关键字写静态函数，es5里面是写到构造函数上。</li>
+</ol>
+</li>
+<li><p>new关键字原理</p>
+<ol>
+<li>首先创造一个对象，根据构造器通过原型链连接起来（新对象的<code>__proto__</code>指向构造器的<code>prototype</code>）</li>
+<li>将this绑定到新建的对象上</li>
+<li>进行新对象的属性赋值和其他代码运行</li>
+<li>判断返回类型是不是对象（node报错），如果没有return或者返回一个基本类型变量，那么忽略<strong>直接返回this</strong>，如果返回值是引用类型变量那么就返回该值（包括数组，对象，函数等）</li>
+</ol>
+</li>
 <li><p>详细说var let const</p>
-<p>ES5之前都是用var来声明变量，let和const是为了解决var存在的一些问题，</p>
+<p> ES5之前都是用var来声明变量，let和const是为了解决var存在的一些问题，</p>
 <ol>
 <li><p>首先是存在<strong>变量声明提升</strong>的情况，在代码逻辑复杂的情况下不便于调试容易出bug。变量提升：例如声明<code>var a = 10;</code>实际上会在本代码段的最开始先声明<code>var a</code>;然后在执行在该行再赋值，这中间如果有人访问了a，那么就是<code>undefined</code>。</p>
 <p>（注意let具有<strong>暂时性死区</strong>特性，如果在一个代码块中let声明一个变量，那么声明之前是无法访问到同名的父作用域级的变量）</p>
 </li>
 <li><p>var可以对一个变量<strong>重复声明</strong>，let和const不可以</p>
 </li>
+<li><p>var在全局作用域下声明一个变量，那么这个<strong>变量属于window或者global</strong>，let和const不是</p>
+</li>
 <li><p>var除非在函数中声明，否则是<strong>全局作用域</strong>的（ES5本身也这么设计，只有全局作用域和函数作用域，没有<strong>块级作用域</strong>），let声明的变量只在当前代码段有效（注意for循环中循环定义部分和循环体部分不是同一个作用域，是父子关系）</p>
 </li>
 </ol>
-<p>const是声明一个常量，声明的时候必须赋值否则报错，其他特性和let相同。注意并不保证其指向的对象的内容不发生改变，只是一个不可变的引用。</p>
+<p> const是声明一个常量，声明的时候必须赋值否则报错，其他特性和let相同。注意并不保证其指向的对象的内容不发生改变，只是一个不可变的引用。</p>
 </li>
 <li><p>js中的异步方案</p>
 <ol>
 <li>回调函数</li>
-<li>Promiss对象</li>
+<li>Promise对象</li>
 <li>generator函数</li>
 <li>async/await （本质上还是generator函数）</li>
 </ol>
 </li>
 <li><p>闭包</p>
-<p> ​        闭包表现上来说是：一个函数返回一个内部的函数，通常是内部函数来引用这个外部函数定义的局部变量。然后这个局部变量不会被GC回收，会一直存在内存中，但是从别的地方访问不到，只有通过这个被返回的内部函数才能访问的到，以此来实现创建私有变量和延长变量的生命周期等。一般来说除非有特定需要，尽量避免使用，因为在函数中创建函数会增大处理开销。</p>
+<p> ​        闭包表现上来说是：一个函数返回一个内部的函数，通常是内部函数来引用这个外部函数定义的局部变量。然后这个局部变量不会被GC回收，会一直存在内存中，但是从别的地方访问不到，只有通过这个被返回的内部函数才能访问的到，以此来实现创建私有变量和延长变量的生命周期等。一般来说除非有特定需要，尽量避免使用（避免在无意间使用），因为在函数中创建函数会增大处理开销。</p>
 <p> ​        闭包并不会在call stack调用栈中保存函数上下文，而是会将闭包内引用的变量生成一个新的作用域(Closure)作用域，介于当前作用域和上层作用域之间。</p>
-<p> ​        例子：防抖可以用闭包做，延迟调用(setTimeout)， 还可以做一个只执行一次某逻辑的函数（配合闭包实现的私有变量（vue computed））。</p>
+<p> ​        例子：防抖可以用闭包做，延迟调用(setTimeout)， 还可以做一个只执行一次某逻辑的函数（配合闭包实现的私有变量（vue computed）。</p>
 </li>
 <li><p>this</p>
 <p>this是和执行上下文绑定的（和作用域链和词法作用域是两种不同的东西），this是为了访问对象的内部的属性，和调用它的环境是相关的，如果其执行上下文是在全局上下文，那么就指向window（node里面是global）</p>
@@ -441,14 +463,6 @@
 </li>
 <li><p>回收阶段，等待虚拟机回收执行上下文，包括内存清理等。</p>
 </li>
-</ol>
-</li>
-<li><p>js new关键字</p>
-<ol>
-<li>首先创造一个对象，根据构造器通过原型链连接起来（新对象的<code>__proto__</code>指向构造器的<code>prototype</code>）</li>
-<li>将this绑定到新建的对象上</li>
-<li>进行新对象的属性赋值和其他代码运行</li>
-<li>判断返回类型是不是对象（node报错），如果没有return或者返回一个基本类型变量，那么忽略<strong>直接返回this</strong>，如果返回值是引用类型变量那么就返回该值（包括数组，对象，函数等）</li>
 </ol>
 </li>
 <li><p>js事件循环</p>
@@ -528,6 +542,8 @@
 <li>用闭包来维持函数内部的局部变量</li>
 <li>原生编程中没有清理对DOM的引用</li>
 </ol>
+</li>
+<li><p>html和js加载顺序，冲突会怎么样</p>
 </li>
 <li><p>js的本地缓存</p>
 <ol>
@@ -677,6 +693,13 @@
 <li><p>patch</p>
 <p>patch是Vue中DOM的更新策略，在我们进行了数据修改之后，会生成一个新的VNode，这时候与旧的VNode比较的过程就叫做patch，patch会用diff算法来比较VNode，最终根据diff算法得到的前后差异来真实DOM</p>
 </li>
+<li><p>v-for和v-if为什么不能同时用</p>
+<p> 在官方文档里面不推荐v-for和v-if同时使用</p>
+<ul>
+<li>vue2中，v-for的优先级是高于v-if的，如果有这种情况：在一个很长的列表中，只有很少几项符合我们v-if的条件，它会先执行循环，再判断条件，相当于有很多无用的操作</li>
+<li>有这种需求的话，一般可以先在js代码中对列表进行一个过滤。</li>
+</ul>
+</li>
 <li><p>vue中key的作用</p>
 <ul>
 <li>指定key是为了避开diff算法默认的“就地复用”的策略，diff中可以通过a.key === b.key这样来判断两个元素是否相同</li>
@@ -698,18 +721,38 @@
 </ol>
 </li>
 <li><p>虚拟DOM理解</p>
+<p> ​        虚拟DOM本质上是一个JavaScript对象，是为了提高操作DOM的效率而设计的，在原生DOM编程中，修改了数据以后让数据显示到页面上的方法都是直接操作DOM，由于操作DOM的开销很大，这样的话在编程中就要格外注意优化DOM操作，比如尽量减少操作的频率等，在Vue或者React框架里面使用虚拟DOM的话，数据修改之后并不是直接操作DOM，而是修改虚拟DOM，由于虚拟DOM就是在内存中的JS对象，所以操作起来效率很高，等一系列对虚拟DOM操作结束之后，虚拟DOM才会转换成真实DOM，渲染到页面上。</p>
+<p> ​        还有就是可以保证组件的独立性，不同的虚拟DOM是不会相互影响的，减少组件之间的耦合</p>
+</li>
+<li><p>Vue组件间通信</p>
+</li>
+<li><p>$nextTick()怎么实现的</p>
+<p>Vue.$nextTick()就是等到组件对应的DOM更新完之后再执行，Vue开启一个异步更新的队列，由于虚拟DOM的机制，数据发生变化之后，vue并<strong>不会立刻更新DOM</strong>，而是将修改数据的操作放到了一个<strong>异步操作队列</strong>中，如果我们一直<strong>修改相同的数据</strong>，异步操作队列还会<strong>进行去重</strong>，等待同一个事件循环中所有数据完成变化之后，会将队列中的事件拿来进行处，进行DOM的更新。</p>
+</li>
+<li><p>Composition API和Mixin的区别</p>
+<ol>
+<li>不清晰的数据来源：如果使用了多个mixin，数据来源于哪个mixin就不清晰，而组合式API通过ref + 解构模式可以让属性的来源清晰</li>
+<li>命令空间冲突，在组合式API中可以修改变量的别名来避免冲突。</li>
+<li></li>
+</ol>
 </li>
 <li><p>vue provide   inject</p>
-<p>这两个API是为了让组件之间通信而设置的，一般来说是祖先节点中通过provide来提供一个变量，然后子孙节点通过inject来注入属性，就是跨层级节点之间建立了一种主动提供和依赖注入的关系。还有很多可以用来代替的方法，比如设置一个EventBus，就是通过一个空的Vue实例来作为中央事件总线，用来触发事件和监听事件。还有Vuex这种全局的状态管理工具</p>
+<p>这两个API是为了让组件之间通信而设置的，一般来说是祖先节点中通过provide来提供一个变量，然后子孙节点通过inject来注入属性（祖先节点给子孙节点传数据），就是跨层级节点之间建立了一种主动提供和依赖注入的关系。还有很多可以用来代替的方法，比如设置一个EventBus，就是通过一个空的Vue实例来作为中央事件总线，用来触发事件和监听事件。还有Vuex这种全局的状态管理工具</p>
+</li>
+<li><p>Vue2和Vue3的区别（Vue2存在哪些问题）</p>
+<ol>
+<li>响应式的区别</li>
+<li>重构了虚拟DOM</li>
+</ol>
 </li>
 <li><p>Vue-Router路由模式</p>
 <ol>
-<li>hash模式，从表现上来说是在URL中通过#字符后面的字符来做为路由路径，如<code>http://example.com/#/user?id=123</code>其中/user就是路径，它是作为http请求里的参数存在的，和query参数一样，会被浏览器解析成参数，而http请求路径是不变的，所以每次改变hash值的话不会重新请求加载页面。vue-router实例通过监听hashChange事件来完成路由的跳转，内部也用到了html的锚点来实现</li>
-</ol>
+<li><p>hash模式，从表现上来说是在URL中通过#字符后面的字符来做为路由路径，如<code>http://example.com/#/user?id=123</code>其中/user就是路径，它是作为http请求里的参数存在的，和query参数一样，会被浏览器解析成参数，而http请求路径是不变的，所以每次改变hash值的话不会重新请求加载页面。vue-router实例通过监听hashChange事件来完成路由的跳转，内部也用到了html的锚点来实现</p>
 </li>
 <li><p>hitstory模式，history模式是通过H5的Histroy API来实现的，如果用history模式的话，URL中就不再使用hash了，请求路径都是真实的url地址，每一个不同路径的请求都会通过http请求发送到服务端，比如同一个页面中，如果浏览器刷新页面的话，hash模式中不会再向服务器发送请求，而history模式中就会发出请求重新刷新页面。在前进和后退操作中是用了History的API pushState()和relplaceState()方法来完成跳转，不用重新加载页面</p>
-<ol start="3">
-<li>abstract模式，是为了支持在非浏览器环境下使用的，所以不依靠浏览器的URL支持，需要router内部自己完成路由跳转，而不是借助于浏览器实现</li>
+</li>
+<li><p>abstract模式，是为了支持在非浏览器环境下使用的，所以不依靠浏览器的URL支持，需要router内部自己完成路由跳转，而不是借助于浏览器实现</p>
+</li>
 </ol>
 </li>
 <li><p>git </p>
